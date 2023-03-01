@@ -1,0 +1,17 @@
+@import '../../scss/variables';
+
+.goback-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    height: min-content;
+
+    h3 {
+        color: $dark;
+    }
+    
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
