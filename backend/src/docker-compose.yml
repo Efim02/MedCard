@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  med-card-webapi:
+    container_name: med-card-webapi
+    image: efimka/med-card-webapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 53125:80
+    depends_on:
+      med-card-database:
+        condition: service_started
+
+  med-card-database:
+    container_name: med-card-database
+    restart: always
+    image: postgres
+    ports:
+    - 8484:5432
+    expose: 
+    - '8484'
+    environment:
+      POSTGRES_DB: "mc-storage"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "postgres"
+    volumes:
+      - med-card-database-volume:/var/lib/postgresql/data
+
+volumes:
+  med-card-database-volume:

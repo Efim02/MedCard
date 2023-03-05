@@ -28,4 +28,10 @@
     <ProjectReference Include="..\MC.BL\MC.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="McContext.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
