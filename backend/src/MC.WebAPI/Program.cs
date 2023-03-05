@@ -1,16 +1,16 @@
-namespace MC.WebAPI
+п»їnamespace MC.WebAPI
 {
     using MC.WebAPI.Extensions;
 
     /// <summary>
-    /// Начало выполнения программы.
+    /// РќР°С‡Р°Р»Рѕ РІС‹РїРѕР»РЅРµРЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹.
     /// </summary>
     public static class Program
     {
         /// <summary>
-        /// Главный метод.
+        /// Р“Р»Р°РІРЅС‹Р№ РјРµС‚РѕРґ.
         /// </summary>
-        /// <param name="args"> Аргументы запуска-вызова. </param>
+        /// <param name="args"> РђСЂРіСѓРјРµРЅС‚С‹ Р·Р°РїСѓСЃРєР°-РІС‹Р·РѕРІР°. </param>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -35,10 +35,10 @@ namespace MC.WebAPI
         }
 
         /// <summary>
-        /// Регистрация сервисов.
+        /// Р РµРіРёСЃС‚СЂР°С†РёСЏ СЃРµСЂРІРёСЃРѕРІ.
         /// </summary>
-        /// <param name="serviceCollection"> Сервисы. </param>
-        /// <param name="webHostEnvironment"> Среда web. </param>
+        /// <param name="serviceCollection"> РЎРµСЂРІРёСЃС‹. </param>
+        /// <param name="webHostEnvironment"> РЎСЂРµРґР° web. </param>
         private static void RegisterServices(IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
         {
             // Add services to the container.
