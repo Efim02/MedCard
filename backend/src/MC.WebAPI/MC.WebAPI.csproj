@@ -28,6 +28,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 
   <ItemGroup>
