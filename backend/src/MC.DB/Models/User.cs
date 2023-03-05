@@ -26,12 +26,12 @@ public class User : BaseId
     public string Patronymic { get; set; }
 
     /// <summary>
-    /// Вес.
-    /// </summary>
-    public float Weight { get; set; }
-
-    /// <summary>
     /// Записи о показателях.
     /// </summary>
     public List<Record> Records { get; set; }
+
+    /// <summary>
+    /// Вес.
+    /// </summary>
+    public float Weight { get; set; }
 }
