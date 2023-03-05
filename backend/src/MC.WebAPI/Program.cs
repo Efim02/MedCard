@@ -35,6 +35,8 @@
             }
 
             webApplication.MapControllers();
+            RegisterServiceUtils.MigrateDatabase(webApplication);
+
             webApplication.Run();
         }
 
