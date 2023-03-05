@@ -21,6 +21,11 @@ public class UserDto : BaseDto
     public string LastName { get; set; }
 
     /// <summary>
+    /// Отчество.
+    /// </summary>
+    public string Patronymic { get; set; }
+
+    /// <summary>
     /// Вес.
     /// </summary>
     public float Weight { get; set; }

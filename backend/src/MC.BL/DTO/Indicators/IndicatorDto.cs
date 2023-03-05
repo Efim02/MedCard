@@ -6,6 +6,11 @@
 public class IndicatorDto
 {
     /// <summary>
+    /// Сокращенный аббревиатура показателя.
+    /// </summary>
+    public string Key { get; set; }
+
+    /// <summary>
     /// Название индикатора.
     /// </summary>
     public string Name { get; set; }
@@ -13,5 +18,5 @@ public class IndicatorDto
     /// <summary>
     /// Значение.
     /// </summary>
-    public string Value { get; set; }
+    public float Value { get; set; }
 }
