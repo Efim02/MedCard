@@ -3,7 +3,7 @@
 /// <summary>
 /// Способ добавления записи о показателях.
 /// </summary>
-public enum AddingType
+public enum AddingEnum
 {
     /// <summary>
     /// Парсингом, файла.

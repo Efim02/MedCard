@@ -1,6 +1,9 @@
 ﻿namespace MC.WebAPI
 {
+    using MC.DB;
     using MC.WebAPI.Extensions;
+
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Начало выполнения программы.
@@ -50,6 +53,12 @@
 
             serviceCollection.ConnectSwagger(webHostEnvironment);
             serviceCollection.ConnectAutoMapper();
+#if DEBUG
+            serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql("name=ConnectionStrings:Debug"));
+#else
+            serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql("name=ConnectionStrings:Release"));
+#endif
+
         }
     }
 }
