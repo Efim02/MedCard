@@ -2,6 +2,7 @@
 {
     using MC.DB;
     using MC.WebAPI.Extensions;
+    using MC.WebAPI.Utils;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -53,12 +54,8 @@
 
             serviceCollection.ConnectSwagger(webHostEnvironment);
             serviceCollection.ConnectAutoMapper();
-#if DEBUG
-            serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql("name=ConnectionStrings:Debug"));
-#else
-            serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql("name=ConnectionStrings:Release"));
-#endif
 
+            RegisterServiceUtils.RegisterDatabase(serviceCollection);
         }
     }
 }
