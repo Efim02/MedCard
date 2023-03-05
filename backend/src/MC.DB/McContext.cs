@@ -19,24 +19,9 @@ public class McContext : DbContext
     }
 
     /// <summary>
-    /// Показатели: концентрация гемоглобина.
+    /// Показатели.
     /// </summary>
-    public DbSet<Indicator> HGB { get; set; }
-
-    /// <summary>
-    /// Показатели: среднее содержание гемоглобина в отдельном эритроците.
-    /// </summary>
-    public DbSet<Indicator> MCH { get; set; }
-
-    /// <summary>
-    /// Показатели: средний объем на 1 мкм эритроцитов.
-    /// </summary>
-    public DbSet<Indicator> MCV { get; set; }
-
-    /// <summary>
-    /// Показатели: абсолютное содержание эритроцитов.
-    /// </summary>
-    public DbSet<Indicator> RBC { get; set; }
+    public DbSet<Indicator> Indicators { get; set; }
 
     /// <summary>
     /// Записи о показателях.
@@ -47,4 +32,16 @@ public class McContext : DbContext
     /// Пользователи.
     /// </summary>
     public DbSet<User> Users { get; set; }
+
+    /// <inheritdoc />
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Indicator>(eb =>
+        {
+            eb.HasKey(e => new { e.RecordId, e.IndicatorEnum });
+            eb.HasOne(e => e.Record).WithMany(e => e.Indicators).HasForeignKey(e => e.RecordId);
+        });
+
+        base.OnModelCreating(modelBuilder);
+    }
 }

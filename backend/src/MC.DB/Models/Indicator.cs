@@ -1,6 +1,6 @@
 ﻿namespace MC.DB.Models;
 
-using System.ComponentModel.DataAnnotations.Schema;
+using MC.BL.Enums;
 
 /// <summary>
 /// Показатель (какой-то).
@@ -8,9 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Indicator
 {
     /// <summary>
+    /// Тип показателя.
+    /// </summary>
+    public IndicatorEnum IndicatorEnum { get; set; }
+
+    /// <summary>
     /// Запись.
     /// </summary>
-    [NotMapped]
     public Record Record { get; set; }
 
     /// <summary>

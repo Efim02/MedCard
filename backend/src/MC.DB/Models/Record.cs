@@ -12,7 +12,7 @@ public class Record : BaseId
     /// <summary>
     /// Способ добавления записи о показателях.
     /// </summary>
-    public AddingType AddingType { get; set; }
+    public AddingEnum AddingEnum { get; set; }
 
     /// <summary>
     /// Дата создания записи.
