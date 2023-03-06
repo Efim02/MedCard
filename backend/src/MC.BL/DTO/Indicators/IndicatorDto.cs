@@ -1,5 +1,10 @@
 ﻿namespace MC.BL.DTO.Indicators;
 
+using MC.BL.Enums;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 /// <summary>
 /// DTO индикатора.
 /// </summary>
@@ -8,12 +13,12 @@ public class IndicatorDto
     /// <summary>
     /// Сокращенный аббревиатура показателя.
     /// </summary>
-    public string Key { get; set; }
+    public IndicatorEnum IndicatorEnum { get; set; }
 
     /// <summary>
-    /// Название индикатора.
+    /// ИД записи.
     /// </summary>
-    public string Name { get; set; }
+    public long RecordId { get; set; }
 
     /// <summary>
     /// Значение.
