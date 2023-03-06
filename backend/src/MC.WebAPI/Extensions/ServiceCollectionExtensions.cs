@@ -12,23 +12,6 @@ using Microsoft.OpenApi.Models;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Конфигурация картографа.
-    /// </summary>
-    private static readonly MapperConfiguration _mapperConfiguration = new(cfg =>
-    {
-        //cfg.CreateMap<Person, SK.DB.Models.Person>().ReverseMap();
-    });
-
-    /// <summary>
-    /// Подключение <see cref="IMapper" />.
-    /// </summary>
-    /// <param name="serviceCollection"> Коллекция сервисов. </param>
-    public static void ConnectAutoMapper(this IServiceCollection serviceCollection)
-    {
-        serviceCollection.AddSingleton(_mapperConfiguration.CreateMapper());
-    }
-
-    /// <summary>
     /// Подключение Swagger />.
     /// </summary>
     /// <param name="serviceCollection"> Коллекция сервисов. </param>

@@ -53,15 +53,15 @@
         {
             // Add services to the container.
             serviceCollection.AddControllers();
+            serviceCollection.AddControllersWithViews().AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             serviceCollection.AddEndpointsApiExplorer();
             serviceCollection.AddSwaggerGen();
 
             serviceCollection.ConnectSwagger(webHostEnvironment);
-            serviceCollection.ConnectAutoMapper();
-            serviceCollection.AddControllersWithViews().AddJsonOptions(options =>
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            serviceCollection.AddAutoMapper(typeof(Program));
 
             RegisterServiceUtils.RegisterDatabase(serviceCollection);
 
