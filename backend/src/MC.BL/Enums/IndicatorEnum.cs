@@ -1,8 +1,12 @@
 ﻿namespace MC.BL.Enums;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 /// <summary>
 /// Тип показателя.
 /// </summary>
+[JsonConverter(typeof(StringEnumConverter))]
 public enum IndicatorEnum
 {
     /// <summary>
@@ -39,25 +43,25 @@ public enum IndicatorEnum
 
     /// <summary>
     /// </summary>
-    MCHC,
+    MCHC = 1008,
 
     /// <summary>
     /// </summary>
-    RET,
+    RET = 1009,
 
     /// <summary>
     /// </summary>
-    WBC,
+    WBC = 1010,
 
     /// <summary>
     /// </summary>
-    MVP,
+    MVP = 1011,
 
     /// <summary>
     /// </summary>
-    RFV,
+    RFV = 1012,
 
     /// <summary>
     /// </summary>
-    ESR
+    ESR = 1013
 }

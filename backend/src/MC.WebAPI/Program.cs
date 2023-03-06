@@ -1,10 +1,11 @@
 ﻿namespace MC.WebAPI
 {
-    using MC.DB;
-    using MC.WebAPI.Extensions;
-    using MC.WebAPI.Utils;
+    using System.Text.Json.Serialization;
 
-    using Microsoft.EntityFrameworkCore;
+    using MC.BL.Enums;
+    using MC.WebAPI.Extensions;
+    using MC.WebAPI.Helpers;
+    using MC.WebAPI.Utils;
 
     /// <summary>
     /// Начало выполнения программы.
@@ -24,7 +25,7 @@
             var webApplication = builder.Build();
 
             webApplication.UseRouting();
-            webApplication.UseEndpoints(endPoints => 
+            webApplication.UseEndpoints(endPoints =>
                 endPoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
             webApplication.UseHttpsRedirection();
@@ -47,7 +48,8 @@
         /// </summary>
         /// <param name="serviceCollection"> Сервисы. </param>
         /// <param name="webHostEnvironment"> Среда web. </param>
-        private static void RegisterServices(IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
+        private static void RegisterServices(IServiceCollection serviceCollection,
+            IWebHostEnvironment webHostEnvironment)
         {
             // Add services to the container.
             serviceCollection.AddControllers();
@@ -58,8 +60,17 @@
 
             serviceCollection.ConnectSwagger(webHostEnvironment);
             serviceCollection.ConnectAutoMapper();
+            serviceCollection.AddControllersWithViews().AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             RegisterServiceUtils.RegisterDatabase(serviceCollection);
+
+            // Регистрация ограничителей.
+            serviceCollection.Configure<RouteOptions>(options =>
+            {
+                options.ConstraintMap.Add(nameof(AddingEnum), typeof(CustomRouteConstraint<AddingEnum>));
+                options.ConstraintMap.Add(nameof(IndicatorEnum), typeof(CustomRouteConstraint<IndicatorEnum>));
+            });
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace MC.WebAPI.Utils;
 
-using System.Diagnostics;
-
 using MC.DB;
 
 using Microsoft.EntityFrameworkCore;
@@ -12,23 +10,9 @@ using Microsoft.EntityFrameworkCore;
 public static class RegisterServiceUtils
 {
     /// <summary>
-    /// Регистрация БД сервисов.
-    /// </summary>
-    /// <param name="serviceCollection"> Сервисы. </param>
-    public static async void RegisterDatabase(IServiceCollection serviceCollection)
-    {
-#if DEBUG
-        const string connectionString = "name=ConnectionStrings:DebugConnection";
-#else
-        const string connectionString = "name=ConnectionStrings:ReleaseConnection";
-#endif
-        serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql(connectionString));
-    }
-
-    /// <summary>
     /// Накатить миграции на БД.
     /// </summary>
-    /// <param name="applicationBuilder">Веб-приложение.</param>
+    /// <param name="applicationBuilder"> Веб-приложение. </param>
     public static async void MigrateDatabase(IApplicationBuilder applicationBuilder)
     {
         try
@@ -57,5 +41,19 @@ public static class RegisterServiceUtils
         {
             Console.WriteLine($"ERROR: \n{exception}");
         }
+    }
+
+    /// <summary>
+    /// Регистрация БД сервисов.
+    /// </summary>
+    /// <param name="serviceCollection"> Сервисы. </param>
+    public static async void RegisterDatabase(IServiceCollection serviceCollection)
+    {
+#if DEBUG
+        const string connectionString = "name=ConnectionStrings:DebugConnection";
+#else
+        const string connectionString = "name=ConnectionStrings:ReleaseConnection";
+#endif
+        serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql(connectionString));
     }
 }
