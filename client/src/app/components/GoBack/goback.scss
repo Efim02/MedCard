@@ -1,17 +1,34 @@
-@import '../../scss/variables';
+@import '../../scss/App.scss';
 
-.goback-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    height: min-content;
+.goback_container * {
+    font-size: 30px;
+}
 
-    h3 {
-        color: $dark;
+.goback_title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 35px;
+    color: #000000;
+    margin: 5px 0;
+}
+
+svg {
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .goback_container * {
+        font-size: 25px;
     }
-    
-    img {
-        width: 1.5rem;
-        height: 1.5rem;
+}
+
+@media (max-width: 767px) {
+    .goback_container * {
+        font-size: 17px;
+        line-height: 20px;
+    }
+
+    .goback_title {
+        width: 170px;
     }
 }

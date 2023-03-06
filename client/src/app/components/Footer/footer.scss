@@ -1,7 +1,23 @@
-@import '../../scss/variables';
-
-.app-footer {
+.footer_container {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    color: $dark;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.footer_logo {
+     font-family: "Montserrat", sans-serif;
+     font-style: normal;
+     font-weight: 600;
+     font-size: 25px;
+     line-height: 30px;
+     color: #000000;
+}
+
+@media (max-width: 768px) {
+    .footer_logo {
+        font-size: 15px;
+        line-height: 20px;
+    }
 }

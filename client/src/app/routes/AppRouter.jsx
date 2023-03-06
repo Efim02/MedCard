@@ -7,7 +7,7 @@ const AppRouter = () => {
     return (
         <>
             <Routes>
-                <Route path='/' element={ <DynamicsPage /> } />
+                <Route path='/' element={ <HomePage /> } />
                 <Route path='/dynamics' element={ <DynamicsPage /> }/>
                 <Route path='*' element={ <NotFound /> } />
             </Routes>

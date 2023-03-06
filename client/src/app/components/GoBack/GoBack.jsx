@@ -1,21 +1,21 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './goback.scss';
-import LeftArrow from '../../assets/svg/arrow-left-short.svg';
+import { useNavigate } from 'react-router-dom';
+import Stack from 'react-bootstrap/Stack';
+import { BsArrowLeft } from 'react-icons/bs';
+import './GoBack.scss';
 
-export const GoBack = (props) => {
+const GoBack = (props) => {
     const navigate = useNavigate();
+    const handleClick = () => navigate(-1);
 
     return(
-        <div className='goback-wrapper'>
-            <Link onClick={() => navigate(-1)}>
-                <img src={LeftArrow} alt='Go back' />
-            </Link>
-            <h3>
-                {props.text}
-            </h3>
-        </div>
-    )
+        <>
+            <Stack className='goback_container' direction='horizontal' gap={2}>
+                <BsArrowLeft onClick={handleClick} />
+                <p className='goback_title'>{props.text}</p>
+            </Stack>
+        </>
+    );
 }
 
 export default GoBack;

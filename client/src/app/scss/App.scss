@@ -1,31 +1,27 @@
-@import "./variables";
+// ----------- Fonts  -----------
+@use './fonts';
 
-#root {
-    display: flex;
-    max-height: 100vh;
-    height: 100vh;
-    width: 100%;
-    color: $accent;
-    font-family: $fontMontserrat;
-    font-size: $textBaseSize;
+// ----------- Colors -----------
+$turquoise: #38b2ac;
+$red-header: #e92347;
+$purple: #667eea;
+$turquoise-opacity: rgba(56, 178, 172, 0.9);
+
+// ----------- Scrollbar -----------
+body::-webkit-scrollbar {
+  width: 12px;
 }
-
-* {
-    margin: 0;
-    padding: 0;
+body::-webkit-scrollbar-track {
+  background: white;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $purple;
+  border-radius: 20px;
+  border: 3px solid white;
 }
 
 .App {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 50px;
-    max-height: 100%;
-    width: 100%;
-    margin: 25px 110px;
-}
-
-.link {
-    text-decoration: inherit;
-    color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

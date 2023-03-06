@@ -1,15 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './header.scss';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/NavBar';
+import './Header.scss';
 
-const Header = () => {
+export default function Header() {
     return(
-        <div className="app-header">
-            <Link className='link link__home' to='/' >
-                <h2>NST Medicine Card</h2>
-            </Link>
-        </div>
-    )
+        <>
+            <Navbar collapseOnSelect expand="md">
+                <Container>
+                    <Navbar.Brand className='header_logo' as={Link} to='/'>
+                        NST Medicine card
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+                    <Navbar.Collapse id='responsive-navbar-nav'>
+                        <Nav className='me-auto'></Nav>
+                        <Nav>
+                            <Nav.Link className='header_link' as={Link} to='/'>
+                                Главная
+                            </Nav.Link>
+                            <Nav.Link className='header_link' as={Link} to='/'>
+                                Сотрудники
+                            </Nav.Link>
+                            <Nav.Link className='header_link_exit' as={Link} to='/'>
+                                Выход
+                            </Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </>
+    );
 }
-
-export default Header;

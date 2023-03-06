@@ -1,12 +1,13 @@
 import React from 'react';
-import './footer.scss';
+import Container from 'react-bootstrap/esm/Container';
+import './Footer.scss';
 
-const Footer = () => {
+export default function Footer() {
     return (
-        <div className="app-footer">
-                <h3>NST Medicine Card</h3>
-        </div>
-    )
-};
-
-export default Footer;
+        <>
+            <Container className='footer_container'>
+                <p className='footer_logo'>NST Medicine card</p>
+            </Container>
+        </>
+    );
+}
