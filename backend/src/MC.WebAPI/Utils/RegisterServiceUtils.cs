@@ -1,6 +1,10 @@
 ﻿namespace MC.WebAPI.Utils;
 
+using System.Diagnostics;
+
+using MC.BL.Interfaces.DB;
 using MC.DB;
+using MC.DB.Repositories;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -35,11 +39,11 @@ public static class RegisterServiceUtils
 
             await mcContext.Database.MigrateAsync().ConfigureAwait(false);
 
-            Console.WriteLine("INFO: McContext Migrated!");
+            Outputter.Info("McContext Migrated!");
         }
         catch (Exception exception)
         {
-            Console.WriteLine($"ERROR: \n{exception}");
+            Outputter.Error(exception);
         }
     }
 
@@ -47,7 +51,7 @@ public static class RegisterServiceUtils
     /// Регистрация БД сервисов.
     /// </summary>
     /// <param name="serviceCollection"> Сервисы. </param>
-    public static async void RegisterDatabase(IServiceCollection serviceCollection)
+    public static void RegisterDatabase(IServiceCollection serviceCollection)
     {
 #if DEBUG
         const string connectionString = "name=ConnectionStrings:DebugConnection";
@@ -55,5 +59,8 @@ public static class RegisterServiceUtils
         const string connectionString = "name=ConnectionStrings:ReleaseConnection";
 #endif
         serviceCollection.AddDbContext<McContext>(options => options.UseNpgsql(connectionString));
+
+        serviceCollection.AddScoped<IUserRepository, UserRepository>();
+        serviceCollection.AddScoped<IRecordRepository, RecordRepository>();
     }
 }

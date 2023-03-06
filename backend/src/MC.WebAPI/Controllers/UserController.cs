@@ -2,6 +2,7 @@
 
 using MC.BL.DTO;
 using MC.BL.DTO.Indicators;
+using MC.BL.Interfaces.DB;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,30 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/user")]
 public class UserController : ControllerBase
 {
+    /// <summary>
+    /// Репозиторий пользователей.
+    /// </summary>
+    private readonly IUserRepository _userRepository;
+
+    /// <summary>
+    /// Контроллер для обработки сущностей пользователь.
+    /// </summary>
+    public UserController(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
+    /// <summary>
+    /// Создать пользователя.
+    /// </summary>
+    /// <param name="userDto"> Пользователь. </param>
+    [HttpPost]
+    public async Task<IActionResult> AddUser([FromBody] UserDto userDto)
+    {
+        await _userRepository.Create(userDto);
+        return Ok();
+    }
+
     /// <summary>
     /// Получить последние индикаторы пользователя.
     /// </summary>
@@ -31,9 +56,10 @@ public class UserController : ControllerBase
     /// <returns> DTO пользователя. </returns>
     [HttpGet]
     [Route("{id:long}")]
-    public UserDto GetUser(long id)
+    public async Task<IActionResult> GetUser(long id)
     {
-        throw new NotImplementedException();
+        var userDto = await _userRepository.Get(id);
+        return Ok(userDto);
     }
 
     /// <summary>
@@ -44,8 +70,13 @@ public class UserController : ControllerBase
     /// <param name="height"> Рост. </param>
     [HttpPut]
     [Route("{id:long}")]
-    public IActionResult UpdateUser(long id, float weight, float height)
+    public async Task<IActionResult> UpdateUser(long id, float weight, float height)
     {
-        throw new NotImplementedException();
+        var userDto = await _userRepository.Get(id);
+        userDto.Weight = weight;
+        userDto.Height = height;
+
+        await _userRepository.Update(userDto);
+        return Ok();
     }
 }
