@@ -27,6 +27,8 @@
             webApplication.UseEndpoints(endPoints => 
                 endPoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
+            webApplication.UseHttpsRedirection();
+
             // Configure the HTTP request pipeline.
             if (webApplication.Environment.IsDevelopment())
             {
