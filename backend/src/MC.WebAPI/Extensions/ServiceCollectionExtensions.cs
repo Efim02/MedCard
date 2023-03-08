@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="serviceCollection"> Коллекция сервисов. </param>
     /// <param name="webHostEnvironment"> Среда web. </param>
-    public static void ConnectSwagger(this IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
+    public static void ParametrizeSwagger(this IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
     {
         serviceCollection.AddSwaggerGen(swaggerGenOptions =>
         {
