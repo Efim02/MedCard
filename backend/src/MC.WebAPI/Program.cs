@@ -28,7 +28,8 @@
             webApplication.UseEndpoints(endPoints =>
                 endPoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
-            webApplication.UseHttpsRedirection();
+            // TODO: Для использования Https необходимо в Docker-е его настроить.
+            //webApplication.UseHttpsRedirection();
 
             // Configure the HTTP request pipeline.
             if (webApplication.Environment.IsDevelopment())
@@ -60,7 +61,7 @@
             serviceCollection.AddEndpointsApiExplorer();
             serviceCollection.AddSwaggerGen();
 
-            serviceCollection.ConnectSwagger(webHostEnvironment);
+            serviceCollection.ParametrizeSwagger(webHostEnvironment);
             serviceCollection.AddAutoMapper(typeof(Program));
 
             RegisterServiceUtils.RegisterDatabase(serviceCollection);

@@ -2,6 +2,8 @@
 
 using System.Reflection;
 
+using MC.WebAPI.Helpers;
+
 using Microsoft.OpenApi.Models;
 
 /// <summary>
@@ -14,11 +16,12 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="serviceCollection"> Коллекция сервисов. </param>
     /// <param name="webHostEnvironment"> Среда web. </param>
-    public static void ConnectSwagger(this IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
+    public static void ParametrizeSwagger(this IServiceCollection serviceCollection, IWebHostEnvironment webHostEnvironment)
     {
         serviceCollection.AddSwaggerGen(swaggerGenOptions =>
         {
             swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "MedCard WebAPI", Version = "v1" });
+            swaggerGenOptions.OperationFilter<SwaggerFileOperationFilter>();
             var executingAssembly = Assembly.GetExecutingAssembly();
             var assemblyDirectory = Path.GetDirectoryName(executingAssembly.Location);
             var assemblyXml = $"{executingAssembly.GetName().Name}.xml";

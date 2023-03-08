@@ -4,6 +4,7 @@ using MC.BL.DTO;
 using MC.BL.DTO.Indicators;
 using MC.BL.Enums;
 using MC.BL.Interfaces.DB;
+using MC.Report.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,7 +55,9 @@ public class RecordController : ControllerBase
     /// <param name="userId"> ИД пользователя. </param>
     /// <returns> Список показателей. </returns>
     [HttpGet]
-    public async Task<IActionResult> GetIndicatorHistory([FromQuery] IndicatorEnum indicatorType, [FromQuery] long userId)
+    [Route("history/indicator")]
+    public async Task<IActionResult> GetIndicatorHistory([FromQuery] IndicatorEnum indicatorType,
+        [FromQuery] long userId)
     {
         var dateIndicatorDtos = await _recordRepository.GetValuesByIndicator(indicatorType, userId);
         return Ok(dateIndicatorDtos);
@@ -103,9 +106,47 @@ public class RecordController : ControllerBase
     /// <param name="userId"> ИД пользователя. </param>
     /// <param name="bytes"> Байты документа. </param>
     [HttpPost]
-    [Route("pdf")]
-    public IActionResult UploadPdfDocument(long userId, [FromBody] byte[] bytes)
+    [Route("pdf/data")]
+    public async Task<IActionResult> UploadPdfDocument([FromQuery] long userId, [FromBody] byte[] bytes)
     {
-        throw new NotImplementedException();
+        await using var memoryStream = new MemoryStream(bytes);
+        return await UploadPdfDocument(userId, memoryStream);
+    }
+
+    /// <summary>
+    /// Загрузить документ с показателями с помощью файла.
+    /// </summary>
+    /// <param name="userId"> ИД пользователя. </param>
+    /// <param name="formFile"> Файл. </param>
+    /// <remarks> Этот запрос использовался для (загрузки файла) тестирования парсинга пдф  из Swagger-а. </remarks>
+    [HttpPost]
+    [Route("pdf/file")]
+    public async Task<IActionResult> UploadPdfDocument([FromQuery] long userId, [FromForm] IFormFile formFile)
+    {
+        await using var fileStream = formFile.OpenReadStream();
+        return await UploadPdfDocument(userId, fileStream);
+    }
+
+    /// <summary>
+    /// Загрузить документ с показателями с помощью файла.
+    /// </summary>
+    /// <param name="userId"> ИД пользователя. </param>
+    /// <param name="fileStream"> Поток с байтами из файла. </param>
+    private async Task<IActionResult> UploadPdfDocument(long userId, Stream fileStream)
+    {
+        var laboratoryPdfReadingService = new LaboratoryPdfReadingService(fileStream);
+        var listIndicatorDto = await Task.Run(laboratoryPdfReadingService.Read);
+
+        var recordDto = new RecordDto
+        {
+            AddingEnum = AddingEnum.Parse,
+            Created = DateTime.UtcNow,
+            UserId = userId,
+            Indicators = listIndicatorDto.Indicators
+        };
+
+
+        var recordDtoId = await _recordRepository.Create(recordDto);
+        return Ok(recordDtoId);
     }
 }

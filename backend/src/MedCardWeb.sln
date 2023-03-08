@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MC.WebAPI", "MC.WebAPI\MC.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MC.BL", "MC.BL\MC.BL.csproj", "{05BDE718-10D6-4B62-9426-0305E874CF6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MC.DB", "MC.DB\MC.DB.csproj", "{33115147-C28E-42C8-A811-32392261B5E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MC.DB", "MC.DB\MC.DB.csproj", "{33115147-C28E-42C8-A811-32392261B5E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MC.Report", "MC.Report\MC.Report.csproj", "{40881C43-0C39-4B6B-9E56-F0B952A622DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{33115147-C28E-42C8-A811-32392261B5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33115147-C28E-42C8-A811-32392261B5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33115147-C28E-42C8-A811-32392261B5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40881C43-0C39-4B6B-9E56-F0B952A622DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40881C43-0C39-4B6B-9E56-F0B952A622DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40881C43-0C39-4B6B-9E56-F0B952A622DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40881C43-0C39-4B6B-9E56-F0B952A622DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
