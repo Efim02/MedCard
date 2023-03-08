@@ -43,12 +43,13 @@ public abstract class BaseRepository<TEntity, TDbEntity> : IBaseRepository<TEnti
     }
 
     /// <inheritdoc />
-    public virtual async Task Create(TEntity entity)
+    public virtual async Task<long> Create(TEntity entity)
     {
         var dbEntity = Mapper.Map<TDbEntity>(entity);
 
         await Set.AddAsync(dbEntity);
         await McContext.SaveChangesAsync();
+        return dbEntity.Id;
     }
 
     /// <inheritdoc />

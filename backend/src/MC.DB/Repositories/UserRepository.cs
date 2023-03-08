@@ -5,7 +5,6 @@ using AutoMapper;
 using MC.BL.DTO;
 using MC.BL.DTO.Indicators;
 using MC.BL.Interfaces.DB;
-using MC.BL.Utils;
 using MC.DB.Models;
 using MC.DB.Services;
 

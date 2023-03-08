@@ -16,7 +16,8 @@ public class DtoToDbProfile : Profile
     /// </summary>
     public DtoToDbProfile()
     {
-        CreateMap<IndicatorDto, Indicator>().ReverseMap();
+        CreateMap<IndicatorDto, Indicator>().IncludeAllDerived().ReverseMap();
+        CreateMap<DateIndicatorDto, Indicator>().ReverseMap();
 
         CreateMap<RecordDto, Record>().ReverseMap();
 

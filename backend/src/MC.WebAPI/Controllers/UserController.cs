@@ -1,7 +1,6 @@
 ﻿namespace MC.WebAPI.Controllers;
 
 using MC.BL.DTO;
-using MC.BL.DTO.Indicators;
 using MC.BL.Interfaces.DB;
 
 using Microsoft.AspNetCore.Mvc;
@@ -33,8 +32,8 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddUser([FromBody] UserDto userDto)
     {
-        await _userRepository.Create(userDto);
-        return Ok();
+        var id = await _userRepository.Create(userDto);
+        return Ok(id);
     }
 
     /// <summary>
@@ -61,6 +60,17 @@ public class UserController : ControllerBase
     {
         var userDto = await _userRepository.Get(id);
         return Ok(userDto);
+    }
+
+    /// <summary>
+    /// Удалить пользователя.
+    /// </summary>
+    /// <param name="id"> ИД пользователя. </param>
+    [HttpDelete]
+    public async Task<IActionResult> RemoveUser(long id)
+    {
+        await _userRepository.Delete(id);
+        return Ok();
     }
 
     /// <summary>

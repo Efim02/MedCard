@@ -12,7 +12,7 @@ public interface IBaseRepository<TEntity> where TEntity : BaseDto
     /// Создать сущность.
     /// </summary>
     /// <param name="entity"> Сущность. </param>
-    public Task Create(TEntity entity);
+    public Task<long> Create(TEntity entity);
 
     /// <summary>
     /// Удалить сущность по ИД.

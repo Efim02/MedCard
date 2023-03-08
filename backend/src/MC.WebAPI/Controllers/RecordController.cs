@@ -1,8 +1,9 @@
 ﻿namespace MC.WebAPI.Controllers;
 
+using MC.BL.DTO;
 using MC.BL.DTO.Indicators;
 using MC.BL.Enums;
-using MC.DB.Models;
+using MC.BL.Interfaces.DB;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +15,36 @@ using Microsoft.AspNetCore.Mvc;
 public class RecordController : ControllerBase
 {
     /// <summary>
+    /// Репозиторий записей.
+    /// </summary>
+    private readonly IRecordRepository _recordRepository;
+
+    /// <summary>
+    /// Контроллер записей.
+    /// </summary>
+    public RecordController(IRecordRepository recordRepository)
+    {
+        _recordRepository = recordRepository;
+    }
+
+    /// <summary>
     /// Добавить запись.
     /// </summary>
     /// <param name="userId"> ИД пользователя. </param>
     /// <param name="listIndicatorDto"> Список индикаторов. </param>
     [HttpPost]
-    public IActionResult AddRecord(long userId, [FromBody] ListIndicatorDto listIndicatorDto)
+    public async Task<IActionResult> AddRecord([FromQuery] long userId, [FromBody] ListIndicatorDto listIndicatorDto)
     {
-        throw new NotImplementedException();
+        var recordDto = new RecordDto
+        {
+            AddingEnum = AddingEnum.Input,
+            Created = DateTime.UtcNow,
+            UserId = userId,
+            Indicators = listIndicatorDto.Indicators
+        };
+
+        var recordDtoId = await _recordRepository.Create(recordDto);
+        return Ok(recordDtoId);
     }
 
     /// <summary>
@@ -29,12 +52,12 @@ public class RecordController : ControllerBase
     /// </summary>
     /// <param name="indicatorType"> Тип индикатора. </param>
     /// <param name="userId"> ИД пользователя. </param>
-    /// <returns> Список значений показателя. </returns>
+    /// <returns> Список показателей. </returns>
     [HttpGet]
-    [Route("{indicatorType:IndicatorEnum}")]
-    public List<float> GetIndicatorHistory(IndicatorEnum indicatorType, long userId)
+    public async Task<IActionResult> GetIndicatorHistory([FromQuery] IndicatorEnum indicatorType, [FromQuery] long userId)
     {
-        throw new NotImplementedException();
+        var dateIndicatorDtos = await _recordRepository.GetValuesByIndicator(indicatorType, userId);
+        return Ok(dateIndicatorDtos);
     }
 
     /// <summary>
@@ -44,9 +67,10 @@ public class RecordController : ControllerBase
     /// <returns> Показатели. </returns>
     [HttpGet]
     [Route("{id:long}")]
-    public List<Indicator> GetRecord(long id)
+    public async Task<IActionResult> GetRecord(long id)
     {
-        throw new NotImplementedException();
+        var recordDto = await _recordRepository.GetRecordWithIndicators(id);
+        return Ok(recordDto);
     }
 
     /// <summary>
@@ -55,9 +79,10 @@ public class RecordController : ControllerBase
     /// <param name="userId"> ИД пользователя. </param>
     /// <returns> Список записей. </returns>
     [HttpGet]
-    public List<Record> GetRecords(long userId)
+    public async Task<IActionResult> GetRecords([FromQuery] long userId)
     {
-        throw new NotImplementedException();
+        var recordDtos = await _recordRepository.GetRecordsByUserId(userId);
+        return Ok(recordDtos);
     }
 
     /// <summary>
@@ -66,9 +91,10 @@ public class RecordController : ControllerBase
     /// <param name="id"> ИД записи. </param>
     [HttpDelete]
     [Route("{id:long}")]
-    public IActionResult RemoveRecord(long id)
+    public async Task<IActionResult> RemoveRecord(long id)
     {
-        throw new NotImplementedException();
+        await _recordRepository.Delete(id);
+        return Ok();
     }
 
     /// <summary>
