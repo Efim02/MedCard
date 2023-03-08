@@ -2,6 +2,8 @@
 
 using System.Reflection;
 
+using MC.WebAPI.Helpers;
+
 using Microsoft.OpenApi.Models;
 
 /// <summary>
@@ -19,6 +21,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddSwaggerGen(swaggerGenOptions =>
         {
             swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "MedCard WebAPI", Version = "v1" });
+            swaggerGenOptions.OperationFilter<SwaggerFileOperationFilter>();
             var executingAssembly = Assembly.GetExecutingAssembly();
             var assemblyDirectory = Path.GetDirectoryName(executingAssembly.Location);
             var assemblyXml = $"{executingAssembly.GetName().Name}.xml";

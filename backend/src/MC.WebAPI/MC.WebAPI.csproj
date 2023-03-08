@@ -51,6 +51,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MC.BL\MC.BL.csproj" />
     <ProjectReference Include="..\MC.DB\MC.DB.csproj" />
+    <ProjectReference Include="..\MC.Report\MC.Report.csproj" />
   </ItemGroup>
 
 </Project>

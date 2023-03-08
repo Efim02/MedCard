@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["MC.WebAPI/MC.WebAPI.csproj", "MC.WebAPI/"]
 COPY ["MC.BL/MC.BL.csproj", "MC.BL/"]
 COPY ["MC.DB/MC.DB.csproj", "MC.DB/"]
+COPY ["MC.Report/MC.Report.csproj", "MC.Report/"]
 RUN dotnet restore "MC.WebAPI/MC.WebAPI.csproj"
 COPY . .
 WORKDIR "MC.WebAPI"
