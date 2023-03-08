@@ -11,7 +11,8 @@ using Microsoft.EntityFrameworkCore;
 /// <summary>
 /// Базовый репозиторий.
 /// </summary>
-/// <typeparam name="TEntity"> Тип сущности. </typeparam>
+/// <typeparam name="TEntity"> Тип BL сущности. </typeparam>
+/// <typeparam name="TDbEntity"> Тип DB сущности. </typeparam>
 public abstract class BaseRepository<TEntity, TDbEntity> : IBaseRepository<TEntity>
     where TEntity : BaseDto
     where TDbEntity : BaseId
@@ -19,60 +20,60 @@ public abstract class BaseRepository<TEntity, TDbEntity> : IBaseRepository<TEnti
     /// <summary>
     /// Автомаппер.
     /// </summary>
-    private readonly IMapper _mapper;
+    protected readonly IMapper Mapper;
 
     /// <summary>
     /// Контекст БД.
     /// </summary>
-    private readonly McContext _mcContext;
+    protected readonly McContext McContext;
 
     /// <summary>
     /// Набор сущностей из БД.
     /// </summary>
-    private readonly DbSet<TDbEntity> _set;
+    protected readonly DbSet<TDbEntity> Set;
 
     /// <summary>
     /// Базовый репозиторий.
     /// </summary>
     public BaseRepository(McContext mcContext, IMapper mapper)
     {
-        _mcContext = mcContext;
-        _mapper = mapper;
-        _set = mcContext.Set<TDbEntity>();
+        McContext = mcContext;
+        Mapper = mapper;
+        Set = mcContext.Set<TDbEntity>();
     }
 
     /// <inheritdoc />
     public virtual async Task Create(TEntity entity)
     {
-        var dbEntity = _mapper.Map<TDbEntity>(entity);
+        var dbEntity = Mapper.Map<TDbEntity>(entity);
 
-        await _set.AddAsync(dbEntity);
-        await _mcContext.SaveChangesAsync();
+        await Set.AddAsync(dbEntity);
+        await McContext.SaveChangesAsync();
     }
 
     /// <inheritdoc />
     public virtual async Task Delete(long id)
     {
         var dbEntity = await GetDbEntity(id);
-        _set.Remove(dbEntity);
+        Set.Remove(dbEntity);
 
-        await _mcContext.SaveChangesAsync();
+        await McContext.SaveChangesAsync();
     }
 
     /// <inheritdoc />
     public virtual async Task<TEntity> Get(long id)
     {
         var dbEntity = await GetDbEntity(id);
-        return _mapper.Map<TEntity>(dbEntity);
+        return Mapper.Map<TEntity>(dbEntity);
     }
 
     /// <inheritdoc />
     public virtual async Task Update(TEntity entity)
     {
-        var dbEntity = _mapper.Map<TDbEntity>(entity);
-        _set.Update(dbEntity);
+        var dbEntity = Mapper.Map<TDbEntity>(entity);
+        Set.Update(dbEntity);
 
-        await _mcContext.SaveChangesAsync();
+        await McContext.SaveChangesAsync();
     }
 
     /// <summary>
@@ -82,7 +83,7 @@ public abstract class BaseRepository<TEntity, TDbEntity> : IBaseRepository<TEnti
     /// <returns> DB сущность. </returns>
     protected virtual async Task<TDbEntity> GetDbEntity(long id)
     {
-        var dbEntity = await _set.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+        var dbEntity = await Set.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
         if (dbEntity == null)
             throw new ArgumentException($"Сущности {typeof(TEntity)} не существует с ИД {id}.");
 

@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\DB\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>
