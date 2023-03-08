@@ -1,7 +1,5 @@
 ﻿namespace MC.WebAPI.Utils;
 
-using System.Diagnostics;
-
 using MC.BL.Interfaces.DB;
 using MC.DB;
 using MC.DB.Repositories;
