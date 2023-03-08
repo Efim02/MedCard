@@ -2,9 +2,6 @@
 
 using MC.BL.Enums;
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
 /// <summary>
 /// DTO индикатора.
 /// </summary>

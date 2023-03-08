@@ -44,9 +44,10 @@ public class UserController : ControllerBase
     /// <returns> Словарь: {ключ-название; значение}. </returns>
     [HttpGet]
     [Route("{id:long}/indicator")]
-    public ListIndicatorDto GetLastIndicators(long id)
+    public async Task<IActionResult> GetLastIndicators(long id)
     {
-        throw new NotImplementedException();
+        var listIndicatorDto = await _userRepository.GetLastIndicators(id);
+        return Ok(listIndicatorDto);
     }
 
     /// <summary>
