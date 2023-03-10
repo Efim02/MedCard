@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/esm/Container';
-import './footer.scss';
+import './Footer.scss';
 
 export default function Footer() {
     return (
