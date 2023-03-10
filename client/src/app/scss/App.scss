@@ -1,0 +1,27 @@
+// ----------- Fonts  -----------
+@use './fonts';
+
+// ----------- Colors -----------
+$turquoise: #38b2ac;
+$red-header: #e92347;
+$purple: #667eea;
+$turquoise-opacity: rgba(56, 178, 172, 0.9);
+
+// ----------- Scrollbar -----------
+body::-webkit-scrollbar {
+  width: 12px;
+}
+body::-webkit-scrollbar-track {
+  background: white;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $purple;
+  border-radius: 20px;
+  border: 3px solid white;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
