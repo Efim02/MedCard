@@ -8,6 +8,8 @@ import { BsFillFileEarmarkPersonFill } from "react-icons/bs";
 import { TbTextResize } from "react-icons/tb";
 import { BsGraphUp } from "react-icons/bs";
 import { BsClockHistory } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 import "./MainNavigation.scss";
 
 export default function MainNavigation() {
@@ -75,6 +77,7 @@ export default function MainNavigation() {
             </Card>
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
+            <Link to="/dynamics">
             <Card className="main_navigation_container-card">
               <Row className="h-100 w-100 row-btn">
                 <Col className="main_navigation_container-btn_title" lg={9}>
@@ -91,6 +94,7 @@ export default function MainNavigation() {
                 </Col>
               </Row>
             </Card>
+            </Link>
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
             <Card className="main_navigation_container-card">
