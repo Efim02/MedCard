@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
-
 import "./MainUserData.scss";
 import Parameter from "../../components/Parameter/Parameter";
 import { bloodParameters } from "../../utils/mocks/bloodParametersMock";
+import { Context } from "../../..";
+
 export default function MainUserData() {
+  const { user } = useContext(Context);
+
   return (
     <>
       <Container className="user_container">
@@ -27,19 +30,21 @@ export default function MainUserData() {
                   <Row>
                     <Col xl={12} lg={6} md={6}>
                       <Card.Text className="FIO_user">
-                        Иванова Анна Ивановна
+                        {user.user ? user?.user.lastName : "Иванова"}{" "}
+                        {user.user ? user?.user.firstName : "Анна"}{" "}
+                        {user.user ? user?.user.patronymic : "Ивановна"}
                       </Card.Text>
                     </Col>
                     <Col xl={12} lg={6} md={6}>
                       <Row>
                         <Col md={12} xl={4} lg={4}>
                           <Card.Text className="params_user">
-                            Рост: 162 см.
+                            Рост: {user.user ? user?.user.height : "152"} см.
                           </Card.Text>
                         </Col>
                         <Col md={12} xl={4} lg={4}>
                           <Card.Text className="params_user">
-                            Вес: 51 кг.
+                            Вес: {user.user ? user?.user.weight : "54"} кг.
                           </Card.Text>
                         </Col>
                       </Row>

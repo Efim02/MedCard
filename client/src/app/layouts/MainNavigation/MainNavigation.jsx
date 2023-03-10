@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -11,8 +11,14 @@ import { BsClockHistory } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import "./MainNavigation.scss";
+import ModalChangeDataUser from "../ModalChangeDataUser/ModalChangeDataUser";
 
 export default function MainNavigation() {
+
+  const [showModalChangeDataUser, setShowModalChangeDataUser] = useState(false);
+  const handleCloseModalChangeDataUser = () => setShowModalChangeDataUser(false);
+  const handleShowModalChangeDataUser = () => setShowModalChangeDataUser(true);
+
   return (
     <>
       <Container className="main_navigation_container">
@@ -41,7 +47,7 @@ export default function MainNavigation() {
             </Card>
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
-            <Card className="main_navigation_container-card">
+            <Card className="main_navigation_container-card" onClick={() => handleShowModalChangeDataUser()}>
               <Row className="h-100 w-100 row-btn">
                 <Col className="main_navigation_container-btn_title" lg={9}>
                   <p>Изменить параметры</p>
@@ -78,22 +84,22 @@ export default function MainNavigation() {
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
             <Link to="/dynamics">
-            <Card className="main_navigation_container-card">
-              <Row className="h-100 w-100 row-btn">
-                <Col className="main_navigation_container-btn_title" lg={9}>
-                  <p>Динамика показателей</p>
-                </Col>
-                <Col
-                  className="main_navigation_container-btn_icon_container"
-                  lg={3}
-                >
-                  <BsGraphUp
-                    size={60}
-                    className="main_navigation_container-btn_icon"
-                  />
-                </Col>
-              </Row>
-            </Card>
+              <Card className="main_navigation_container-card">
+                <Row className="h-100 w-100 row-btn">
+                  <Col className="main_navigation_container-btn_title" lg={9}>
+                    <p>Динамика показателей</p>
+                  </Col>
+                  <Col
+                    className="main_navigation_container-btn_icon_container"
+                    lg={3}
+                  >
+                    <BsGraphUp
+                      size={60}
+                      className="main_navigation_container-btn_icon"
+                    />
+                  </Col>
+                </Row>
+              </Card>
             </Link>
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
@@ -115,6 +121,8 @@ export default function MainNavigation() {
             </Card>
           </Col>
         </Row>
+
+        <ModalChangeDataUser show={showModalChangeDataUser} handleClose={handleCloseModalChangeDataUser} />
       </Container>
     </>
   );

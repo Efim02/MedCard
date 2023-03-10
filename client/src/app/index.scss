@@ -24,6 +24,11 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid white;
 }
 
-a{
+a {
   text-decoration: none;
+}
+.main_spinner {
+  width: 10rem;
+  height: 10rem;
+  color: $turquoise_opacity;
 }
