@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -9,15 +9,20 @@ import { TbTextResize } from "react-icons/tb";
 import { BsGraphUp } from "react-icons/bs";
 import { BsClockHistory } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
 import "./MainNavigation.scss";
 import ModalChangeDataUser from "../ModalChangeDataUser/ModalChangeDataUser";
 
-export default function MainNavigation() {
+const ModalHistory = React.lazy(() => import("../ModalHistory/ModalHistory"));
 
+export default function MainNavigation() {
   const [showModalChangeDataUser, setShowModalChangeDataUser] = useState(false);
-  const handleCloseModalChangeDataUser = () => setShowModalChangeDataUser(false);
+  const handleCloseModalChangeDataUser = () =>
+    setShowModalChangeDataUser(false);
   const handleShowModalChangeDataUser = () => setShowModalChangeDataUser(true);
+
+  const [showModalHistory, setShowModalHistory] = useState(false);
+  const handleCloseModalHistory = () => setShowModalHistory(false);
+  const handleShowModalHistory = () => setShowModalHistory(true);
 
   return (
     <>
@@ -47,7 +52,10 @@ export default function MainNavigation() {
             </Card>
           </Col>
           <Col lg={4} md={6} sm={12} className="card_container">
-            <Card className="main_navigation_container-card" onClick={() => handleShowModalChangeDataUser()}>
+            <Card
+              className="main_navigation_container-card"
+              onClick={() => handleShowModalChangeDataUser()}
+            >
               <Row className="h-100 w-100 row-btn">
                 <Col className="main_navigation_container-btn_title" lg={9}>
                   <p>Изменить параметры</p>
@@ -102,7 +110,13 @@ export default function MainNavigation() {
               </Card>
             </Link>
           </Col>
-          <Col lg={4} md={6} sm={12} className="card_container">
+          <Col
+            lg={4}
+            md={6}
+            sm={12}
+            className="card_container"
+            onClick={() => handleShowModalHistory()}
+          >
             <Card className="main_navigation_container-card">
               <Row className="h-100 w-100 row-btn">
                 <Col className="main_navigation_container-btn_title" lg={9}>
@@ -122,7 +136,18 @@ export default function MainNavigation() {
           </Col>
         </Row>
 
-        <ModalChangeDataUser show={showModalChangeDataUser} handleClose={handleCloseModalChangeDataUser} />
+        <ModalChangeDataUser
+          show={showModalChangeDataUser}
+          handleClose={handleCloseModalChangeDataUser}
+        />
+        {showModalHistory && (
+          <Suspense>
+            <ModalHistory
+              show={showModalHistory}
+              handleClose={handleCloseModalHistory}
+            />
+          </Suspense>
+        )}
       </Container>
     </>
   );
