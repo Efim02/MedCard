@@ -46,6 +46,10 @@
   color: #ffffff !important;
 }
 
+.main_faq_container-question_body{
+  white-space: pre-wrap;
+}
+
 @media (max-width: 767px) {
   .accordion-button {
     background: $purple !important;
