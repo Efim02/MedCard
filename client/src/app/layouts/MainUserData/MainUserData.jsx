@@ -8,8 +8,9 @@ import "./MainUserData.scss";
 import Parameter from "../../components/Parameter/Parameter";
 import { bloodParameters } from "../../utils/mocks/bloodParametersMock";
 import { Context } from "../../..";
+import { observer } from "mobx-react-lite";
 
-export default function MainUserData() {
+const MainUserData = observer(() => {
   const { user } = useContext(Context);
 
   return (
@@ -70,4 +71,6 @@ export default function MainUserData() {
       </Container>
     </>
   );
-}
+})
+
+export default MainUserData

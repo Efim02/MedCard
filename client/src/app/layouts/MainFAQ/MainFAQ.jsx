@@ -3,11 +3,10 @@ import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Accordion from "react-bootstrap/Accordion";
-
 import { questionsMock } from "../../utils/mocks/questionsMock";
 import "./MainFAQ.scss";
 
-export default function MainFAQ() {
+const MainFAQ = () =>  {
   return (
     <>
       <Container className="main_faq_container">
@@ -38,3 +37,5 @@ export default function MainFAQ() {
     </>
   );
 }
+
+export default MainFAQ

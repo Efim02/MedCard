@@ -6,7 +6,7 @@ import Row from "react-bootstrap/esm/Row";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { Context } from "../../..";
-import { updateUserApi } from "../../services/users.service";
+import { fetchOneUserApi, updateUserApi } from "../../services/users.service";
 import SuccessToast from "../../components/SuccessToast/SuccessToast";
 import ErrorToast from "../../components/ErrorToast/ErrorToast";
 import { observer } from "mobx-react-lite";
@@ -35,10 +35,13 @@ const ModalChangeDataUser = observer((props) => {
     setLoading(true);
     updateUserApi({ id, weight, height })
       .then(() => {
-        setToastMessage("Данные успешно обновлены!");
-        handleShowSuccessToast();
-        setLoading(false);
-        props.handleClose();
+        fetchOneUserApi(1).then((data) => {
+          user.setUser(data)
+          setToastMessage("Данные успешно обновлены!");
+          setLoading(false);
+          handleShowSuccessToast();
+          props.handleClose();
+        })
       })
       .catch(() => {
         setToastMessage(
