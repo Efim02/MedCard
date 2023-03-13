@@ -1,0 +1,15 @@
+@import "../../index.scss";
+
+.modal_history {
+  color: $purple;
+
+  .btn-close {
+    fill: $purple !important;
+  }
+
+  table{
+    border-collapse: separate;
+    border-spacing: 5px;
+    border-color: rgba(255, 255, 255, 0);
+  }
+}
