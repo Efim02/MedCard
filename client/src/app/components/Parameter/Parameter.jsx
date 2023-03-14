@@ -31,7 +31,9 @@ const popover = (props) => (
         {
           infoParameters[
             infoParameters.findIndex((param) => param.name === props.name)
-          ].info.menNorm
+          ].info.menNormMin + " - " +  infoParameters[
+            infoParameters.findIndex((param) => param.name === props.name)
+          ].info.menNormMax
         }
       </Row>
       <Row>
@@ -39,7 +41,9 @@ const popover = (props) => (
         {
           infoParameters[
             infoParameters.findIndex((param) => param.name === props.name)
-          ].info.womenNorm
+          ].info.womenNormMin + " - " +  infoParameters[
+            infoParameters.findIndex((param) => param.name === props.name)
+          ].info.womenNormMax
         }
       </Row>
     </Popover.Body>

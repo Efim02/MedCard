@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ModalHistory.scss";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/esm/Row";
@@ -6,18 +6,33 @@ import Col from "react-bootstrap/esm/Col";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/esm/Spinner";
 import HistoryTableRow from "../../components/HistoryTableRow/HistoryTableRow";
+import { getUserActualIndicators } from "../../services/records.service";
+import { Context } from "../../..";
 
 export default function ModalHistory(props) {
+  const { user } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [userHistory, setUserHistory] = useState([]);
 
+  const [render, setRender] = useState(false)
+
+  const reRender = () => {
+    setRender(render => !render)
+  }
+
   useEffect(() => {
-    //fetch history parameters user
-    setTimeout(() => {
+    getUserActualIndicators(user.user.id).then((data) => {
+      setUserHistory(data);
       setLoading(false);
-    }, 500);
-    setUserHistory(['test', 'test']);
+    });
   }, []);
+
+  useEffect(() => {
+    getUserActualIndicators(user.user.id).then((data) => {
+      setUserHistory(data);
+      setLoading(false);
+    });
+  }, [render])
 
   return (
     <>
@@ -42,7 +57,7 @@ export default function ModalHistory(props) {
                   style={{ height: "auto" }}
                   className="d-flex justify-content-center align-items-center"
                 >
-                  <Spinner className="main_spinner"/>;
+                  <Spinner className="main_spinner" />;
                 </div>
               </Col>
             </Row>
@@ -61,7 +76,14 @@ export default function ModalHistory(props) {
                     </thead>
                     <tbody>
                       {userHistory.map((item) => {
-                        return <HistoryTableRow key={Math.random()}/>; //Then change math function to id data
+                        return (
+                          <HistoryTableRow
+                            key={item.id}
+                            date={item.created}
+                            idRecord={item.id}
+                            reRender={reRender}
+                          />
+                        );
                       })}
                     </tbody>
                   </Table>

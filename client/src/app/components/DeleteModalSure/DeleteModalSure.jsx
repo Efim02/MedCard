@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "./DeleteModalSure.scss";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
+import { deleteRecordById } from "../../services/records.service";
+import SuccessToast from "../SuccessToast/SuccessToast";
+import ErrorToast from "../ErrorToast/ErrorToast";
+import { formatDate } from "../../utils/formatDate";
 
 export default function DeleteModalSure(props) {
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleShowSuccessToast = () => setShowSuccessToast(true);
+  const handleCloseSuccessToast = () => setShowSuccessToast(false);
+
+  const handleShowErrorToast = () => setShowErrorToast(true);
+  const handleCloseErrorToast = () => setShowErrorToast(false);
 
   const deleteHistoryUser = () => {
-    // Do delete func
+    deleteRecordById(props.idRecord)
+      .then(() => {
+        setToastMessage("Данные успешно удалены!");
+        handleShowSuccessToast();
+        props.handleClose();
+        props.reRender()
+      })
+      .catch(() => {
+        setToastMessage(
+          "Произошла ошибка при удалении данных! Повторите позднее..."
+        );
+        handleShowErrorToast();
+        props.handleClose();
+      });
   };
 
   return (
@@ -25,7 +52,7 @@ export default function DeleteModalSure(props) {
           <Modal.Title>Удалить историю</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Вы действительно хотите удалить данную историю показателей от 04.02.2022?
+          Вы действительно хотите удалить данную историю показателей от {formatDate(props.date)}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => deleteHistoryUser()}>
@@ -33,6 +60,17 @@ export default function DeleteModalSure(props) {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <SuccessToast
+        show={showSuccessToast}
+        handleClose={handleCloseSuccessToast}
+        children={toastMessage}
+      />
+      <ErrorToast
+        show={showErrorToast}
+        handleClose={handleCloseErrorToast}
+        children={toastMessage}
+      />
     </>
   );
 }

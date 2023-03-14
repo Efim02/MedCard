@@ -17,6 +17,12 @@ export const getUserActualIndicators = async (id) => {
 
 //Получение индикаторов по идентификатору записи
 export const getIndicatorsByIdRecord = async (id) => {
-    const { data } = await $host.get(`api/record/${id}`);
-    return data;
-  };
+  const { data } = await $host.get(`api/record/${id}`);
+  return data;
+};
+
+//Удаление записи по идентификатору
+export const deleteRecordById = async (id) => {
+  const { data } = await $host.delete(`api/record/${id}`);
+  return data;
+};

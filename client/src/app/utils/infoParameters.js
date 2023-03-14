@@ -4,8 +4,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.85,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -13,8 +15,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -22,8 +26,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -31,8 +37,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -40,8 +48,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -49,8 +59,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -58,8 +70,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -67,8 +81,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -76,8 +92,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
 
@@ -86,8 +104,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
 
@@ -96,8 +116,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -105,8 +127,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -114,8 +138,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -123,8 +149,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -132,8 +160,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -141,8 +171,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -150,8 +182,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -159,8 +193,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
   {
@@ -168,8 +204,10 @@ export const infoParameters = [
     info: {
       fullName: "Эритроциты",
       measure: "%",
-      menNorm: "3.5 - 3.8",
-      womenNorm: "3.2 - 3.6",
+      menNormMin: 3.5,
+      menNormMax: 3.8,
+      womenNormMin: 3.2,
+      womenNormMax: 3.6,
     },
   },
 ];
