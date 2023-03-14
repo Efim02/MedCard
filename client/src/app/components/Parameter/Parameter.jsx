@@ -6,15 +6,42 @@ import Popover from "react-bootstrap/Popover";
 
 import "./Parameter.scss";
 import Row from "react-bootstrap/esm/Row";
+import { infoParameters } from "../../utils/infoParameters";
 
 const popover = (props) => (
   <Popover id="popover-basic" className="param_popover">
     <Popover.Header className="param_popover_header">
-      {props.name} - {props.info.fullName} ({props.info.measure})
+      {props.name} -{" "}
+      {
+        infoParameters[
+          infoParameters.findIndex((param) => param.name === props.name)
+        ].info.fullName
+      }{" "}
+      (
+      {
+        infoParameters[
+          infoParameters.findIndex((param) => param.name === props.name)
+        ].info.measure
+      }
+      )
     </Popover.Header>
     <Popover.Body className="param_popover_body">
-      <Row>Норма для мужчин: {props.info.menNorm}</Row>
-      <Row>Норма для женщин: {props.info.womenNorm}</Row>
+      <Row>
+        Норма для мужчин:{" "}
+        {
+          infoParameters[
+            infoParameters.findIndex((param) => param.name === props.name)
+          ].info.menNorm
+        }
+      </Row>
+      <Row>
+        Норма для женщин:{" "}
+        {
+          infoParameters[
+            infoParameters.findIndex((param) => param.name === props.name)
+          ].info.womenNorm
+        }
+      </Row>
     </Popover.Body>
   </Popover>
 );
