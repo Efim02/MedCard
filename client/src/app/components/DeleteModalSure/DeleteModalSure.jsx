@@ -3,35 +3,23 @@ import "./DeleteModalSure.scss";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
 import { deleteRecordById } from "../../services/records.service";
-import SuccessToast from "../SuccessToast/SuccessToast";
-import ErrorToast from "../ErrorToast/ErrorToast";
 import { formatDate } from "../../utils/formatDate";
 
 export default function DeleteModalSure(props) {
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
-  const [showErrorToast, setShowErrorToast] = useState(false);
-
-  const [toastMessage, setToastMessage] = useState("");
-
-  const handleShowSuccessToast = () => setShowSuccessToast(true);
-  const handleCloseSuccessToast = () => setShowSuccessToast(false);
-
-  const handleShowErrorToast = () => setShowErrorToast(true);
-  const handleCloseErrorToast = () => setShowErrorToast(false);
 
   const deleteHistoryUser = () => {
     deleteRecordById(props.idRecord)
       .then(() => {
-        setToastMessage("Данные успешно удалены!");
-        handleShowSuccessToast();
+        props.toastMessage("Данные успешно удалены!");
+        props.handleSuccessToast();
         props.handleClose();
         props.reRender()
       })
       .catch(() => {
-        setToastMessage(
+        props.toastMessage(
           "Произошла ошибка при удалении данных! Повторите позднее..."
         );
-        handleShowErrorToast();
+        props.handleErrorToast();
         props.handleClose();
       });
   };
@@ -60,17 +48,6 @@ export default function DeleteModalSure(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <SuccessToast
-        show={showSuccessToast}
-        handleClose={handleCloseSuccessToast}
-        children={toastMessage}
-      />
-      <ErrorToast
-        show={showErrorToast}
-        handleClose={handleCloseErrorToast}
-        children={toastMessage}
-      />
     </>
   );
 }

@@ -8,11 +8,24 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import HistoryTableRow from "../../components/HistoryTableRow/HistoryTableRow";
 import { getUserActualIndicators } from "../../services/records.service";
 import { Context } from "../../..";
+import SuccessToast from "../../components/SuccessToast/SuccessToast";
+import ErrorToast from "../../components/ErrorToast/ErrorToast";
 
 export default function ModalHistory(props) {
   const { user } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [userHistory, setUserHistory] = useState([]);
+
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleShowSuccessToast = () => setShowSuccessToast(true);
+  const handleCloseSuccessToast = () => setShowSuccessToast(false);
+
+  const handleShowErrorToast = () => setShowErrorToast(true);
+  const handleCloseErrorToast = () => setShowErrorToast(false);
 
   const [render, setRender] = useState(false)
 
@@ -82,6 +95,9 @@ export default function ModalHistory(props) {
                             date={item.created}
                             idRecord={item.id}
                             reRender={reRender}
+                            handleSuccessToast={handleShowSuccessToast}
+                            handleErrorToast={handleShowErrorToast}
+                            toastMessage={setToastMessage}
                           />
                         );
                       })}
@@ -95,6 +111,17 @@ export default function ModalHistory(props) {
           )}
         </Modal.Body>
       </Modal>
+
+      <SuccessToast
+        show={showSuccessToast}
+        handleClose={handleCloseSuccessToast}
+        children={toastMessage}
+      />
+      <ErrorToast
+        show={showErrorToast}
+        handleClose={handleCloseErrorToast}
+        children={toastMessage}
+      />
     </>
   );
 }

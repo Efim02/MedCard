@@ -61,6 +61,9 @@ export default function HistoryTableRow(props) {
             idRecord={props.idRecord}
             date={props.date}
             reRender={props.reRender}
+            handleSuccessToast={props.handleSuccessToast}
+            handleErrorToast={props.handleErrorToast}
+            toastMessage={props.toastMessage}
           />
         </Suspense>
       )}
