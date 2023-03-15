@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Stack from 'react-bootstrap/Stack';
 import { BsArrowLeft } from 'react-icons/bs';
-import './GoBack.scss';
+import './goback.scss';
 
 const GoBack = (props) => {
     const navigate = useNavigate();

@@ -12,7 +12,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
-import './LineChart.scss';
+import './linechart.scss';
 
 ChartJS.register(
 CategoryScale,

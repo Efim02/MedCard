@@ -1,20 +1,18 @@
-@import "../../../scss/App.scss";
+@import "../..//scss/App.scss";
 
-.modal-content{
-    width: 610px;
-    border-radius: 20px;
-    border: none;
+.modal-hand-content{
+    width: 600px;
     font-family: 'Roboto', sans-serif;
     font-style: normal !important;
     font-weight: 400 !important;
 
-    .modal-header{
+    .modal-hand-header{
         padding: 23px 26px 7px 26px;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .modal-header__title{
+    .modal-hand-header__title{
         font-size: 35px !important;
         color: $purple;
         height: 50px;
@@ -23,16 +21,16 @@
     .btn-close{
         color: $purple;
     }
-    .modal-body{
+    .modal-hand-body{
         padding: 28px;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .modal-body__form{
+    .modal-hand-body__form{
         margin-bottom: 50px;
     }
-    .modal-body__button{
+    .modal-hand-body__button{
         border-radius: 5px;
         background-color: #5FBC47;
         border: none;
@@ -47,23 +45,23 @@
     }
 }
 
-.form{
+.form-hand{
     width: 80%;
     font-weight: 300 !important;
 
-    .form-input{
+    .form-hand-input{
         display: flex;
         justify-content: space-between;
         margin-top: 24px;
         align-items: center;
     }
-    .form-input__label{
+    .form-hand-input__label{
         line-height: 40px;
         height: 40px;
         font-size: 30px !important;
         margin-bottom: 0;
     }
-    .form-input__control{
+    .form-hand-input__control{
         background-color: #DEEFFF;
         width: 300px;
         height: 40px;
@@ -75,7 +73,7 @@
         }
     }
 
-    .form-input__control_bad{
+    .form-hand-input__control_bad{
         border : 3px solid rgb(255, 114, 114);
     }
 }

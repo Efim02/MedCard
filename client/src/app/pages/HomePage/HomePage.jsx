@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
-import './HomePage.scss';
-import Container from 'react-bootstrap/esm/Container';
-import InputIndicators from '../../components/Modals/InputIndicators/InputIndicators';
-
+import React from "react";
+import Container from "react-bootstrap/esm/Container";
+import Blob2 from "../../components/Blobs/Blob2";
+import Blob3 from "../../components/Blobs/Blob3";
+import Blob4 from "../../components/Blobs/Blob4";
+import Blobs from "../../components/Blobs/Blobs";
+import MainFAQ from "../../layouts/MainFAQ/MainFAQ";
+import MainNavigation from "../../layouts/MainNavigation/MainNavigation";
+import MainUserData from "../../layouts/MainUserData/MainUserData";
+import "./HomePage.scss";
 
 const HomePage = () => {
-    const [handInputVisible, setHandInputVisible] = useState(true);
-
-    return (
-        <Container fluid={"md"} className="main_page">
-            <InputIndicators show={handInputVisible} onHide={ () => setHandInputVisible(false) }/>
-        </Container>
-    );
-}
+  return (
+    <>
+      <Container fluid={"sm"} className="main_page">
+        <MainUserData />
+        <MainNavigation />
+        <MainFAQ />
+      </Container>
+      <Blobs />
+      <Blob2 />
+      <Blob3 />
+      <Blob4 />
+    </>
+  );
+};
 
 export default HomePage;

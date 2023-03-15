@@ -12,7 +12,7 @@ export const bloodParameters = [
   },
   {
     id: 2,
-    name: "MCV",
+    name: "RBC",
     value: 3.8,
     info: {
       fullName: "Эритроциты",
@@ -24,7 +24,7 @@ export const bloodParameters = [
 
   {
     id: 3,
-    name: "PLT",
+    name: "RBC",
     value: 3.8,
     info: {
       fullName: "Эритроциты",
@@ -154,118 +154,3 @@ export const bloodParameters = [
     },
   },
 ];
-
-export const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  elements: {
-    line: {
-      borderWidth: 4,
-      tension: 0.3,
-      borderColor: '#38B2AC',
-    },
-    point: {
-      radius: 6,
-      hoverRadius: 4,
-      borderColor: '#38B2AC',
-      backgroundColor: 'rgba(56, 178, 172, 0.75)'
-    }
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: '#38B2AC',
-        font: {
-          size: 15,
-        }
-      }
-    },
-    y: {
-      ticks: {
-        color: '#38B2AC',
-        font: {
-          size: 15,
-        }
-      }
-    }
-  },
-  plugins: {
-    legend: false,
-  }
-};
-
-export const mockDynamics = {
-  labels: [
-          "14.01.23", 
-          "07.02.21", 
-          "16.07.22", 
-          "29.09.22", 
-          "16.09.21", 
-          "12.12.22", 
-          "21.12.21", 
-          "10.08.21", 
-          "08.12.21", 
-          "05.01.21"
-        ],
-  datasets: [
-              {
-                label: 'MCV', 
-                data: [91, 83, 62, 64, 75, 60, 87, 80, 45, 68]
-              }
-            ]
-};
-
-export const handInput = [
-  {
-    indicatorEnum: 'RBC',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'MCV',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'HGB',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'MCH',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'CP',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'PLT',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'HCT',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'MCHC',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'RET',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'WBC',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'MPV',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'RFV',
-    value: 0,
-  },
-  {
-    indicatorEnum: 'ESR',
-    value: 0,
-  },
-]

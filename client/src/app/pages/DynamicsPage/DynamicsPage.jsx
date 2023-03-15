@@ -35,7 +35,7 @@ const DynamicsPage = () => {
                 </Stack>
                 <Container fluid className='dynamics_diagram'>
                     { isLoading 
-                        ? <Spinner className='dynamics_spinner'/> 
+                        ? <Spinner className='main_spinner'/> 
                         : <LineChart 
                             parameter={ parameter }
                             data={ data } 
