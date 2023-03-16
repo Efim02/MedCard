@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import { $host } from "./index";
 
 //Тестовое получение индикаторов
@@ -26,3 +26,11 @@ export const deleteRecordById = async (id) => {
   const { data } = await $host.delete(`api/record/${id}`);
   return data;
 };
+
+// Создание записи с помощью ручного ввода
+export const createHandRecordApi = async (userId, dataIndicators) => {
+  console.log(userId)
+  console.log(dataIndicators)
+  const {data} = await $host.post(`api/record?userId=${userId}`,{indicators: dataIndicators});
+  return data;
+}
