@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,9 +9,32 @@ import Parameter from "../../components/Parameter/Parameter";
 import { bloodParameters } from "../../utils/mocks/bloodParametersMock";
 import { Context } from "../../..";
 import { observer } from "mobx-react-lite";
+import {
+  getIndicatorsByIdRecord,
+  getUserActualIndicators,
+} from "../../services/records.service";
+import Spinner from "react-bootstrap/esm/Spinner";
+import Alert from "react-bootstrap/Alert";
 
 const MainUserData = observer(() => {
   const { user } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+  const [userIndicators, setUserIndicators] = useState([]);
+  const [showAlert, setShowAlert] = useState(true);
+
+  useEffect(() => {
+    getUserActualIndicators(user.user.id).then((data) => {
+      if (data.length !== 0) {
+        const dataSortById = data.sort(
+          (a, b) => parseInt(b.id) - parseInt(a.id)
+        );
+        getIndicatorsByIdRecord(dataSortById[0].id).then((data) => {
+          setUserIndicators(data.indicators);
+          setLoading(false);
+        });
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -57,20 +80,43 @@ const MainUserData = observer(() => {
           </Col>
         </Row>
         <Row className="container_parameters">
-          {bloodParameters.map((param) => (
-            <Col key={param.id} sm={6} md={6} lg={3} xl={2}>
-              <Parameter
-                key={param.id}
-                value={param.value}
-                name={param.name}
-                info={param.info}
-              />
-            </Col>
-          ))}
+          {loading ? (
+            <div
+              style={{ height: "auto" }}
+              className="d-flex justify-content-center align-items-center"
+            >
+              <Spinner className="main_spinner" />;
+            </div>
+          ) : userIndicators.length !== 0 ? (
+            userIndicators.map((param) => (
+              <Col key={param.indicatorEnum} sm={6} md={6} lg={3} xl={2}>
+                <Parameter
+                  key={param.indicatorEnum}
+                  value={param.value}
+                  name={param.indicatorEnum}
+                />
+              </Col>
+            ))
+          ) : showAlert ? (
+            <Alert
+              variant="warning"
+              onClose={() => setShowAlert(false)}
+              dismissible
+            >
+              <Alert.Heading>Упс! Что-то не так...</Alert.Heading>
+              <p>
+                Кажется вы еще не загружали данные о своих параметрах... Нажмите
+                на кнопку "Ввод показателей" для того, чтобы загрузить данные
+                медицинского обследования.
+              </p>
+            </Alert>
+          ) : (
+            ""
+          )}
         </Row>
       </Container>
     </>
   );
-})
+});
 
-export default MainUserData
+export default MainUserData;

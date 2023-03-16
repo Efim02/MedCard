@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ModalHistory.scss";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/esm/Row";
@@ -6,18 +6,46 @@ import Col from "react-bootstrap/esm/Col";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/esm/Spinner";
 import HistoryTableRow from "../../components/HistoryTableRow/HistoryTableRow";
+import { getUserActualIndicators } from "../../services/records.service";
+import { Context } from "../../..";
+import SuccessToast from "../../components/SuccessToast/SuccessToast";
+import ErrorToast from "../../components/ErrorToast/ErrorToast";
 
 export default function ModalHistory(props) {
+  const { user } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [userHistory, setUserHistory] = useState([]);
 
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
+
+  const [toastMessage, setToastMessage] = useState("");
+
+  const handleShowSuccessToast = () => setShowSuccessToast(true);
+  const handleCloseSuccessToast = () => setShowSuccessToast(false);
+
+  const handleShowErrorToast = () => setShowErrorToast(true);
+  const handleCloseErrorToast = () => setShowErrorToast(false);
+
+  const [render, setRender] = useState(false)
+
+  const reRender = () => {
+    setRender(render => !render)
+  }
+
   useEffect(() => {
-    //fetch history parameters user
-    setTimeout(() => {
+    getUserActualIndicators(user.user.id).then((data) => {
+      setUserHistory(data);
       setLoading(false);
-    }, 500);
-    setUserHistory(['test', 'test']);
+    });
   }, []);
+
+  useEffect(() => {
+    getUserActualIndicators(user.user.id).then((data) => {
+      setUserHistory(data);
+      setLoading(false);
+    });
+  }, [render])
 
   return (
     <>
@@ -42,7 +70,7 @@ export default function ModalHistory(props) {
                   style={{ height: "auto" }}
                   className="d-flex justify-content-center align-items-center"
                 >
-                  <Spinner className="main_spinner"/>;
+                  <Spinner className="main_spinner" />;
                 </div>
               </Col>
             </Row>
@@ -61,7 +89,17 @@ export default function ModalHistory(props) {
                     </thead>
                     <tbody>
                       {userHistory.map((item) => {
-                        return <HistoryTableRow key={Math.random()}/>; //Then change math function to id data
+                        return (
+                          <HistoryTableRow
+                            key={item.id}
+                            date={item.created}
+                            idRecord={item.id}
+                            reRender={reRender}
+                            handleSuccessToast={handleShowSuccessToast}
+                            handleErrorToast={handleShowErrorToast}
+                            toastMessage={setToastMessage}
+                          />
+                        );
                       })}
                     </tbody>
                   </Table>
@@ -73,6 +111,17 @@ export default function ModalHistory(props) {
           )}
         </Modal.Body>
       </Modal>
+
+      <SuccessToast
+        show={showSuccessToast}
+        handleClose={handleCloseSuccessToast}
+        children={toastMessage}
+      />
+      <ErrorToast
+        show={showErrorToast}
+        handleClose={handleCloseErrorToast}
+        children={toastMessage}
+      />
     </>
   );
 }

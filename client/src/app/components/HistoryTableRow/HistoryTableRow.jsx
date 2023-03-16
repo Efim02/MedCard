@@ -1,4 +1,5 @@
 import React, { Suspense, useState } from "react";
+import { formatDate } from "../../utils/formatDate";
 import "./HistoryTableRow.scss";
 
 const HistoryDetail = React.lazy(() =>
@@ -9,7 +10,7 @@ const DeleteModalSure = React.lazy(() =>
   import("../DeleteModalSure/DeleteModalSure")
 );
 
-export default function HistoryTableRow() {
+export default function HistoryTableRow(props) {
   const [showModalDetailHistory, setShowModalDetailHistory] = useState(false);
   const handleOpenDetailHistory = () => setShowModalDetailHistory(true);
   const handleCloseDetailHistory = () => setShowModalDetailHistory(false);
@@ -21,8 +22,8 @@ export default function HistoryTableRow() {
   return (
     <>
       <tr className="row_table_history">
-        <td>0142-9281-8181-8181</td>
-        <td>05.06.2019</td>
+        <td>{props.idRecord}</td>
+        <td>{formatDate(props.date)}</td>
         <td>
           <a
             className="a_open_detail"
@@ -46,6 +47,8 @@ export default function HistoryTableRow() {
           <HistoryDetail
             show={showModalDetailHistory}
             handleClose={handleCloseDetailHistory}
+            idRecord={props.idRecord}
+            date={props.date}
           />
         </Suspense>
       )}
@@ -55,6 +58,12 @@ export default function HistoryTableRow() {
           <DeleteModalSure
             show={showModalDeleteHistory}
             handleClose={handleCloseDeleteHistory}
+            idRecord={props.idRecord}
+            date={props.date}
+            reRender={props.reRender}
+            handleSuccessToast={props.handleSuccessToast}
+            handleErrorToast={props.handleErrorToast}
+            toastMessage={props.toastMessage}
           />
         </Suspense>
       )}
