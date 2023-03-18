@@ -211,3 +211,25 @@ export const infoParameters = [
     },
   },
 ];
+
+export const arrayNameIndicators = [
+  "RBC",
+  "MCV",
+  "HGB",
+  "MCH",
+  "CP",
+  "PLT",
+  "HCT",
+  "MCHC",
+  "RET",
+  "WBC",
+  "MPV",
+  "RFV",
+  "ESR",
+  "ALAT",
+  "ASAT",
+  "Bilirubin",
+  "Glucose",
+  "GlycatedHemoglobin",
+  "Iron",
+];
