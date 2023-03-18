@@ -1,6 +1,62 @@
-@import '../../index.scss';
+@import "../../index.scss";
 
-.row_history_detail{
-    font-size: 26px;
-    color: black;
+.row_history_detail {
+  font-size: 26px;
+  color: black;
+}
+
+.badge-success {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: green;
+  width: fit-content;
+  display: inline;
+  margin: 5px;
+  font-size: 22px;
+}
+
+.badge-danger {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: red;
+  width: fit-content;
+  display: inline;
+  margin: 5px;
+  font-size: 22px;
+}
+
+@media (max-width: 992px) {
+  .indicators_good-title {
+    font-size: 16px;
+  }
+
+  .indicators_bad-title {
+    font-size: 16px;
+  }
+
+  .badge-success {
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+  }
+
+  .badge-danger {
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+  }
+
+  .indicators_form-name {
+    font-size: 20px;
+  }
+
+  .goback_title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 567px) {
+  .goback_title {
+    font-size: 16px;
+  }
 }

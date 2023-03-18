@@ -12,7 +12,6 @@ import {
   isBadParameters,
   isGoodParameters,
 } from "../../utils/goodOrBadParameters";
-import Badge from "react-bootstrap/Badge";
 import "./HistoryDetail.scss";
 
 export default function HistoryDetail(props) {
@@ -72,10 +71,10 @@ export default function HistoryDetail(props) {
                 </Col>
               </Row>
               <Row>
-                <Col xs={5}>
+                <Col xl={5} xs={12}>
                   {dataHistory.indicators.map((item) => (
                     <Row key={item.indicatorEnum} className="mb-4">
-                      <Col xs={2}>{item.indicatorEnum + ": "}</Col>
+                      <Col className="indicators_form-name" xs={2}>{item.indicatorEnum + ": "}</Col>
                       <Col xs={10}>
                         <Form.Control
                           key={item.indicatorEnum}
@@ -88,32 +87,28 @@ export default function HistoryDetail(props) {
                     </Row>
                   ))}
                 </Col>
-                <Col xs={1}></Col>
-                <Col xs={6}>
+                <Col xl={1} xs={0}></Col>
+                <Col xl={6} xs={12}>
                   <Row>
-                    <Row>Показатели в норме:</Row>
+                    <Row className="indicators_good-title">Показатели в норме:</Row>
                     <Row>
                       {goodParameters.map((item, idx) => {
                         return (
-                          <Col key={idx} className="p-1" xs={2}>
-                            <Badge key={idx} bg="success" className="w-100">
-                              {item}
-                            </Badge>
-                          </Col>
+                          <div key={idx} className="badge-success">
+                            {item}
+                          </div>
                         );
                       })}
                     </Row>
                   </Row>
                   <Row>
-                    <Row>Показатели не в норме:</Row>
+                    <Row className="indicators_bad-title">Показатели не в норме:</Row>
                     <Row>
                       {badParameters.map((item, idx) => {
                         return (
-                          <Col key={idx} className="p-1" xs={2}>
-                            <Badge key={idx} bg="danger" className="w-100">
-                              {item}
-                            </Badge>
-                          </Col>
+                          <div key={idx} className="badge-danger">
+                            {item}
+                          </div>
                         );
                       })}
                     </Row>

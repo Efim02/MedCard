@@ -7,9 +7,21 @@
     fill: $purple !important;
   }
 
-  table{
+  table {
     border-collapse: separate;
     border-spacing: 5px;
     border-color: rgba(255, 255, 255, 0);
+  }
+
+  @media (max-width: 767px) {
+    thead th {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 567px) {
+    thead th {
+      font-size: 12px;
+    }
   }
 }
