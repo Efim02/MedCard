@@ -60,19 +60,16 @@ const InputIndicators = ({show, onHide}) => {
         createHandRecordApi((user.user.id),dataSend)
             .then(() => {
                 setToastMessage("Данные успешно записаны!");
-                setLoading(false);
                 setShowSuccessToast(true);
-                onHide();
                 setStateForm(stateForm.map(item => ({...item, value: 0})));
             })
             .catch((e)=>{
                 setToastMessage("Произошла ошибка. Повторите позже...");
-                setLoading(false)
                 setShowErrorToast(true)
-                onHide();
                 console.log(e.response.data.message)
             });
-        
+        setLoading(false);
+        onHide();
     };
 
     return (
@@ -81,7 +78,7 @@ const InputIndicators = ({show, onHide}) => {
                 show={show}
                 onHide={onHide}
                 animation={true}
-                contentClassName="modal-hand-content"
+                dialogClassName="modal-hand-content"
             >
                 <Modal.Header closeButton className="modal-hand-header">
                     <Modal.Title className="modal-hand-header__title">
@@ -93,7 +90,7 @@ const InputIndicators = ({show, onHide}) => {
                         style={{ height: "auto" }}
                         className="d-flex justify-content-center align-items-center"
                     >
-                        <Spinner className="main_spinner" />;
+                        <Spinner className="main_spinner" />
                     </div>)
                     :
                     <div>
