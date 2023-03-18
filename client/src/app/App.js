@@ -29,7 +29,7 @@ const App = observer(() => {
         style={{ height: "100vh" }}
         className="d-flex justify-content-center align-items-center"
       >
-        <Spinner className="main_spinner" />;
+        <Spinner className="main_spinner" />
       </div>
     );
   }

@@ -29,8 +29,12 @@ export const deleteRecordById = async (id) => {
 
 // Создание записи с помощью ручного ввода
 export const createHandRecordApi = async (userId, dataIndicators) => {
-  console.log(userId)
-  console.log(dataIndicators)
   const {data} = await $host.post(`api/record?userId=${userId}`,{indicators: dataIndicators});
+  return data;
+}
+
+// Загрузка файла с показателями
+export const createRecordByLoadFile = async (userId,formFile) => {
+  const {data} = await $host.post(`api/record/pdf/file?userId=${userId}`, formFile, {headers: {'Content-Type': 'application/pdf'}});
   return data;
 }

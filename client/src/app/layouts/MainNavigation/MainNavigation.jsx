@@ -12,11 +12,13 @@ import { Link } from "react-router-dom";
 import "./MainNavigation.scss";
 import ModalChangeDataUser from "../ModalChangeDataUser/ModalChangeDataUser";
 import InputIndicators from "../InputIndicators/InputIndicators";
+import ModalLoadFile from "../ModalLoadFIle/ModalLoadFile";
 
 const ModalHistory = React.lazy(() => import("../ModalHistory/ModalHistory"));
 
 export default function MainNavigation() {
   const [handInputVisible, setHandInputVisible] = useState(false);
+  const [loadFileVisible, setLoadFileVisible] = useState(false);
 
   const [showModalChangeDataUser, setShowModalChangeDataUser] = useState(false);
   const handleCloseModalChangeDataUser = () =>
@@ -37,7 +39,10 @@ export default function MainNavigation() {
         </Row>
         <Row>
           <Col lg={4} md={6} sm={12} className="card_container">
-            <Card className="main_navigation_container-card">
+            <Card 
+              className="main_navigation_container-card"
+              onClick={() => setLoadFileVisible(true)}
+            >
               <Row className="h-100 w-100 row-btn">
                 <Col className="main_navigation_container-btn_title" lg={9}>
                   <p> Загрузить файл</p>
@@ -155,6 +160,7 @@ export default function MainNavigation() {
           </Suspense>
         )}
         <InputIndicators show={handInputVisible} onHide={ () => setHandInputVisible(false) }/>
+        <ModalLoadFile show={loadFileVisible} onHide={ () => setLoadFileVisible(false) }/>
       </Container>
     </>
   );
