@@ -74,9 +74,12 @@ export default function HistoryDetail(props) {
                 <Col xl={5} xs={12}>
                   {dataHistory.indicators.map((item) => (
                     <Row key={item.indicatorEnum} className="mb-4">
-                      <Col className="indicators_form-name" xs={2}>{item.indicatorEnum + ": "}</Col>
+                      <Col className="indicators_form-name" xs={2}>
+                        {item.indicatorEnum + ": "}
+                      </Col>
                       <Col xs={10}>
                         <Form.Control
+                          className="input_indicators"
                           key={item.indicatorEnum}
                           defaultValue={item.value}
                           type="number"
@@ -90,28 +93,44 @@ export default function HistoryDetail(props) {
                 <Col xl={1} xs={0}></Col>
                 <Col xl={6} xs={12}>
                   <Row>
-                    <Row className="indicators_good-title">Показатели в норме:</Row>
-                    <Row>
-                      {goodParameters.map((item, idx) => {
-                        return (
-                          <div key={idx} className="badge-success">
-                            {item}
-                          </div>
-                        );
-                      })}
-                    </Row>
+                    <Col>
+                      <Row className="indicators_good-title">
+                        Показатели в норме:
+                      </Row>
+                      <Row>
+                        {goodParameters.length !== 0 ? (
+                          goodParameters.map((item, idx) => {
+                            return (
+                              <div key={idx} className="badge-success">
+                                {item}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <div className="badge-info">Нет параметров</div>
+                        )}
+                      </Row>
+                    </Col>
                   </Row>
                   <Row>
-                    <Row className="indicators_bad-title">Показатели не в норме:</Row>
-                    <Row>
-                      {badParameters.map((item, idx) => {
-                        return (
-                          <div key={idx} className="badge-danger">
-                            {item}
-                          </div>
-                        );
-                      })}
-                    </Row>
+                    <Col>
+                      <Row className="indicators_bad-title">
+                        Показатели не в норме:
+                      </Row>
+                      <Row>
+                        {badParameters.length !== 0 ? (
+                          badParameters.map((item, idx) => {
+                            return (
+                              <div key={idx} className="badge-danger">
+                                {item}
+                              </div>
+                            );
+                          })
+                        ) : (
+                          <div className="badge-info">Нет параметров</div>
+                        )}
+                      </Row>
+                    </Col>
                   </Row>
                 </Col>
               </Row>

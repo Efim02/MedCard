@@ -81,10 +81,10 @@ export default function ModalHistory(props) {
                   <Table>
                     <thead>
                       <tr>
-                        <th>Идентификатор</th>
+                        <th className="id_col_row">Идентификатор</th>
                         <th>Дата загрузки</th>
-                        <th>Просмотр</th>
-                        <th>Удаление</th>
+                        <th className="view_col">Просмотр</th>
+                        <th className="delete_col">Удаление</th>
                       </tr>
                     </thead>
                     <tbody>

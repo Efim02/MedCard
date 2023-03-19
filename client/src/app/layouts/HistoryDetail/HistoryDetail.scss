@@ -3,6 +3,20 @@
 .row_history_detail {
   font-size: 26px;
   color: black;
+
+  .input_indicators{
+    background-color: #DEEFFF;
+  }
+}
+
+.badge-info{
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: rgb(237, 255, 72);
+  width: fit-content;
+  display: inline;
+  margin: 5px;
+  font-size: 22px;
 }
 
 .badge-success {
@@ -41,6 +55,12 @@
   }
 
   .badge-danger {
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+  }
+
+  .badge-info{
     padding: 5px;
     margin: 5px;
     font-size: 16px;

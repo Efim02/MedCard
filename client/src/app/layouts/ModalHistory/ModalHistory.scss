@@ -13,15 +13,45 @@
     border-color: rgba(255, 255, 255, 0);
   }
 
+  .view_col,
+  .delete_col,
+  .id_col_row {
+    display: table-cell;
+  }
+
   @media (max-width: 767px) {
     thead th {
       font-size: 12px;
+    }
+
+    .view_col,
+    .delete_col {
+      display: table-cell;
+    }
+
+    .id_col_row {
+      display: table-cell;
     }
   }
 
   @media (max-width: 567px) {
     thead th {
       font-size: 12px;
+    }
+
+    .id_col_row {
+      display: table-cell;
+    }
+
+    .view_col,
+    .delete_col {
+      display: none;
+    }
+  }
+
+  @media (max-width: 367px) {
+    .id_col_row {
+      display: none;
     }
   }
 }
