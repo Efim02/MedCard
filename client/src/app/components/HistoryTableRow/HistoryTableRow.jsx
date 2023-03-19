@@ -1,4 +1,6 @@
 import React, { Suspense, useState } from "react";
+import { BsEyeFill } from "react-icons/bs";
+import { MdDeleteForever } from "react-icons/md";
 import { formatDate } from "../../utils/formatDate";
 import "./HistoryTableRow.scss";
 
@@ -22,14 +24,15 @@ export default function HistoryTableRow(props) {
   return (
     <>
       <tr className="row_table_history">
-        <td>{props.idRecord}</td>
+        <td className="id_col">{props.idRecord}</td>
         <td>{formatDate(props.date)}</td>
         <td>
           <a
             className="a_open_detail"
             onClick={() => handleOpenDetailHistory()}
           >
-            Подробнее
+            <p className="text">Подробнее</p>
+            <BsEyeFill className="row_icon" size={18}/>
           </a>
         </td>
         <td>
@@ -37,7 +40,8 @@ export default function HistoryTableRow(props) {
             className="a_open_delete"
             onClick={() => handleOpenDeleteHistory()}
           >
-            Удалить
+            <p className="text">Удалить</p>
+            <MdDeleteForever className="row_icon" size={18}/>
           </a>
         </td>
       </tr>

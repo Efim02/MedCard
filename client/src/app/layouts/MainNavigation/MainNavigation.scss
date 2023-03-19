@@ -84,4 +84,35 @@
   .main_navigation_container-card {
     height: auto !important;
   }
+
+  .main_navigation_container-btn_title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 567px) {
+  .main_navigation_container-btn_title {
+    font-size: 16px;
+    line-height: 16px;
+    align-items: center;
+    display: flex;
+    height: 100%;
+
+    p{
+      margin: 0;
+    }
+  }
+
+  .main_navigation_container-btn_icon_container svg{
+    width: 25px;
+    height: 25px;
+  }
+
+  .main_navigation_container-card{
+    padding: 15px;
+  }
+
+  .main_navigation_container-title{
+    font-size: 40px;
+  }
 }
