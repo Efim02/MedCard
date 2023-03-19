@@ -2,11 +2,12 @@ import { Modal, Form, Button } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import "./InputIndicators.scss";
 import { handInput } from "../../utils/constants";
-import { createHandRecordApi } from "../../services/records.service";
+import { createHandRecordApi, getLastIndicatorsToTypesApi } from "../../services/records.service";
 import { Context } from "../../..";
 import SuccessToast from "../../components/SuccessToast/SuccessToast";
 import ErrorToast from "../../components/ErrorToast/ErrorToast";
 import Spinner from "react-bootstrap/esm/Spinner";
+import { arrayNameIndicators } from "../../utils/infoParameters";
 
 const Indicator = (item, OnChange) => {
     return (
@@ -24,7 +25,7 @@ const Indicator = (item, OnChange) => {
 }
 
 const InputIndicators = ({show, onHide}) => {
-    const {user} = useContext(Context)
+    const {user, indicators} = useContext(Context)
 
     const [stateForm, setStateForm] = useState(handInput);
 
@@ -62,6 +63,9 @@ const InputIndicators = ({show, onHide}) => {
                 setToastMessage("Данные успешно записаны!");
                 setShowSuccessToast(true);
                 setStateForm(stateForm.map(item => ({...item, value: 0})));
+                getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
+                    indicators.setIndicators(currentIndicators)
+                })
             })
             .catch((e)=>{
                 setToastMessage("Произошла ошибка. Повторите позже...");

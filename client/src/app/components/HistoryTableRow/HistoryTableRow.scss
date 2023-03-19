@@ -1,9 +1,10 @@
 @import "../../index.scss";
 
-.a_open_detail {
+.a_open_detail .text {
   color: $blue_link;
   transition: 0.5s ease all;
   cursor: pointer;
+  display: block;
 
   &:hover {
     color: $blue_link_hover;
@@ -11,10 +12,23 @@
   }
 }
 
-.a_open_delete {
+.a_open_detail .row_icon {
+  color: $blue_link;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  display: none;
+
+  &:hover {
+    color: $blue_link_hover;
+    transition: 0.5s ease all;
+  }
+}
+
+.a_open_delete .text {
   color: $red_link;
   transition: 0.5s ease all;
   cursor: pointer;
+  display: block;
 
   &:hover {
     color: $red_link_hover;
@@ -22,14 +36,69 @@
   }
 }
 
-.row_table_history{
-    border: none;
+.a_open_delete .row_icon {
+  color: $blue_link;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  display: none;
 
-    td{
-        margin: 0px 5px !important;
-        background-color: $table_element;
-        border-radius: 10px;
-        border: none;
-        padding: 12px 12px;
+  &:hover {
+    color: $blue_link_hover;
+    transition: 0.5s ease all;
+  }
+}
+
+.row_table_history {
+  border: none;
+
+  .id_col{
+    display: table-cell;
+  }
+
+  td {
+    margin: 0px 5px !important;
+    background-color: $table_element;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 567px) {
+  td {
+    font-size: 12px;
+  }
+
+  .a_open_detail .text {
+    display: none;
+  }
+
+  .a_open_detail .row_icon {
+    display: block;
+  }
+
+  .a_open_delete .text {
+    display: none;
+  }
+
+  .a_open_delete .row_icon {
+    fill: $red_link !important;
+    transition: 0.5s ease all;
+    cursor: pointer;
+    display: block;
+  }
+}
+
+@media (max-width: 367px){
+  .row_table_history{
+    .id_col{
+      display: none;
     }
+  } 
 }

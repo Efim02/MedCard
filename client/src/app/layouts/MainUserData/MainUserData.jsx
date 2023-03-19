@@ -17,24 +17,16 @@ import Spinner from "react-bootstrap/esm/Spinner";
 import Alert from "react-bootstrap/Alert";
 
 const MainUserData = observer(() => {
-  const { user } = useContext(Context);
-  const [loading, setLoading] = useState(true);
+  const { user, indicators } = useContext(Context);
+  const [loading, setLoading] = useState(false);
   const [userIndicators, setUserIndicators] = useState([]);
   const [showAlert, setShowAlert] = useState(true);
 
-  useEffect(() => {
-    getUserActualIndicators(user.user.id).then((data) => {
-      if (data.length !== 0) {
-        const dataSortById = data.sort(
-          (a, b) => parseInt(b.id) - parseInt(a.id)
-        );
-        getIndicatorsByIdRecord(dataSortById[0].id).then((data) => {
-          setUserIndicators(data.indicators);
-          setLoading(false);
-        });
-      }
-    });
-  }, []);
+
+  //For loading data
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, []);
 
   return (
     <>
@@ -87,8 +79,8 @@ const MainUserData = observer(() => {
             >
               <Spinner className="main_spinner" />;
             </div>
-          ) : userIndicators.length !== 0 ? (
-            userIndicators.map((param) => (
+          ) : indicators.indicators.length !== 0 ? (
+            indicators.indicators.map((param) => (
               <Col key={param.indicatorEnum} sm={6} md={6} lg={3} xl={2}>
                 <Parameter
                   key={param.indicatorEnum}
