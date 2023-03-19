@@ -11,7 +11,7 @@ import Spinner from "react-bootstrap/esm/Spinner";
 const Indicator = (item, OnChange) => {
     return (
         <Form.Group key={item.indicatorEnum} className="form-hand-input">
-            <Form.Label className="form-hand-input__label">{item.indicatorEnum}:</Form.Label>
+            <Form.Label className="form-hand-input__label">{item.displayValue}:</Form.Label>
             <Form.Control
                 className="form-hand-input__control"
                 type="text"
@@ -49,7 +49,7 @@ const InputIndicators = ({show, onHide}) => {
 
 
     const sendIndicators = () => {
-        const dataSend = stateForm.filter(item => +item.value !== 0).map(item => ({...item, value: +item.value}));
+        const dataSend = stateForm.filter(item => +item.value !== 0).map(item => ({indicatorEnum: item.indicatorEnum, value: +item.value}));
         
         if (dataSend.length === 0) {
             return;
