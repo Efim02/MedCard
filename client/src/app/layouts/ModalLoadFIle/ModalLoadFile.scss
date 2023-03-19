@@ -1,6 +1,9 @@
 @import "../..//scss/App.scss";
 
 $colorBorder: #797979;
+$breakpoint_tablet: 834px;
+$breakpoint_phone: 430px;
+
 
 .load-file{
     --bs-modal-width: 600px !important;
@@ -46,5 +49,19 @@ $colorBorder: #797979;
         font-size: 16px !important;
         color: $purple;
         margin: 0;
+    }
+}
+
+@media (max-width: $breakpoint_tablet) {
+    .load-file{
+        .load-file__header{
+            padding: 15px;
+        }
+        .load-file__title{
+            font-size: 20px !important;
+        }
+        .load-file__body{
+            padding: 15px;
+        }
     }
 }
