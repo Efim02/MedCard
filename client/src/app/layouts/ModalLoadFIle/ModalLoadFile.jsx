@@ -45,15 +45,14 @@ const ModalLoadFile = ({show, onHide}) => {
             .then((data) => {
                 setToastMessage('Данные записаны');
                 setShowSuccessToast(true);
-                console.log(data);
             })
             .catch((e) => {
                 setToastMessage("Произошла ошибка. Повторите позже...");
                 setShowErrorToast(true)
-                console.log(e.response.data.message)
             })
-        onHide();
+        
         setLoading(false);
+        onHide();
     }
 
     function checkIsPdf(file){
@@ -90,42 +89,28 @@ const ModalLoadFile = ({show, onHide}) => {
                         </div>
                         :
                         <div className="drop-area-file">
-                            {drag?
-                                <div
-                                    className="drop-area-file__content"
-                                    onDragStart={e => dragStartHadler(e)}
-                                    onDragLeave={e => dragLeaveHadler(e)}
-                                    onDragOver={e => dragStartHadler(e)}
-                                    onDrop={e => onDropHandler(e)}
+                            <div
+                                className="drop-area-file__content"
+                                onDragStart={e => dragStartHadler(e)}
+                                onDragLeave={e => dragLeaveHadler(e)}
+                                onDragOver={e => dragStartHadler(e)}
+                                onDrop={e => onDropHandler(e)}
+                            >
+                                <Image 
+                                    src="assets/load_file.svg"
+                                    className="drop-area-file__icon"
+                                />
+                                <p 
+                                    className="drop-area__text"
                                 >
-                                    <Image 
-                                        src="assets/load_file.svg"
-                                        className="drop-area-file__icon"
-                                    />
-                                    <p 
-                                        className="drop-area__text"
-                                    >
-                                        Release the file for load
-                                    </p>
-                                </div>
-                                :
-                                <div
-                                    className="drop-area-file__content"
-                                    onDragStart={e => dragStartHadler(e)}
-                                    onDragLeave={e => dragLeaveHadler(e)}
-                                    onDragOver={e => dragStartHadler(e)}
-                                >
-                                    <Image 
-                                        src="assets/load_file.svg"
-                                        className="drop-area-file__icon"
-                                    />
-                                    <p 
-                                        className="drop-area__text"
-                                    >
-                                        Upload a file or drag ans drop
-                                    </p>
-                                </div>
-                            }
+                                    {drag?
+                                        "Release the file for load"
+                                        :
+                                        "Upload a file or drag and drop"
+                                    }
+                                </p>
+                            </div>
+                            
                         </div>
                     }
                 </Modal.Body>

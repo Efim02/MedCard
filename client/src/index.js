@@ -4,13 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.scss";
 import App from "./app/App";
 import UserStore from "./app/store/UserStore";
+import IndicatorsStore from "./app/store/IndicatorsStore";
 
 export const Context = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Context.Provider value={{user: new UserStore()}}>
+    <Context.Provider value={{user: new UserStore(), indicators: new IndicatorsStore()}}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

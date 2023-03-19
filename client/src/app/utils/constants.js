@@ -218,54 +218,97 @@ export const mockDynamics = {
 export const handInput = [
   {
     indicatorEnum: 'RBC',
+    displayValue: 'RBC',
     value: 0,
   },
   {
     indicatorEnum: 'MCV',
+    displayValue: 'MCV',
     value: 0,
   },
   {
     indicatorEnum: 'HGB',
+    displayValue: 'HGB',
     value: 0,
   },
   {
     indicatorEnum: 'MCH',
+    displayValue: 'MCH',
     value: 0,
   },
   {
     indicatorEnum: 'CP',
+    displayValue: 'CP',
     value: 0,
   },
   {
     indicatorEnum: 'PLT',
+    displayValue: 'PLT',
     value: 0,
   },
   {
     indicatorEnum: 'HCT',
+    displayValue: 'HCT',
     value: 0,
   },
   {
     indicatorEnum: 'MCHC',
+    displayValue: 'MCHC',
     value: 0,
   },
   {
     indicatorEnum: 'RET',
+    displayValue: 'RET',
     value: 0,
   },
   {
     indicatorEnum: 'WBC',
+    displayValue: 'WBC',
     value: 0,
   },
   {
     indicatorEnum: 'MPV',
+    displayValue: 'MPV',
     value: 0,
   },
   {
     indicatorEnum: 'RFV',
+    displayValue: 'RFV',
     value: 0,
   },
   {
     indicatorEnum: 'ESR',
+    displayValue: 'ESR',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'ALAT',
+    displayValue: 'ALAT',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'ASAT',
+    displayValue: 'ASAT',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'Bilirubin',
+    displayValue: 'Bilirubin',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'Glucose',
+    displayValue: 'Glucose',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'GlycatedHemoglobin',
+    displayValue: 'HbA1c',
+    value: 0,
+  },
+  {
+    indicatorEnum: 'Iron',
+    displayValue: 'RBC',
     value: 0,
   },
 ]

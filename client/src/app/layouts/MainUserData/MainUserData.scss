@@ -81,3 +81,23 @@
     margin-bottom: 10px;
   }
 }
+
+@media (max-width: 567px) {
+  .FIO_user{
+    font-size: 25px;
+  }
+
+  .params_user{
+    font-size: 22px;
+  }
+
+  .parameter_card_title{
+    font-size: 20px !important;
+  }
+
+  .parameter_card_text{
+    font-size: 35px !important;
+    line-height: 35px !important;
+  }
+}
+

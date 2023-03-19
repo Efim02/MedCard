@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./DeleteModalSure.scss";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
-import { deleteRecordById } from "../../services/records.service";
+import { deleteRecordById, getLastIndicatorsToTypesApi } from "../../services/records.service";
 import { formatDate } from "../../utils/formatDate";
+import { arrayNameIndicators } from "../../utils/infoParameters";
+import { Context } from "../../..";
 
 export default function DeleteModalSure(props) {
+
+  const {user, indicators} = useContext(Context)
 
   const deleteHistoryUser = () => {
     deleteRecordById(props.idRecord)
@@ -14,6 +18,9 @@ export default function DeleteModalSure(props) {
         props.handleSuccessToast();
         props.handleClose();
         props.reRender()
+        getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
+          indicators.setIndicators(currentIndicators)
+      })
       })
       .catch(() => {
         props.toastMessage(

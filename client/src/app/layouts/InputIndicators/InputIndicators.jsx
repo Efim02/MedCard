@@ -2,16 +2,17 @@ import { Modal, Form, Button } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import "./InputIndicators.scss";
 import { handInput } from "../../utils/constants";
-import { createHandRecordApi } from "../../services/records.service";
+import { createHandRecordApi, getLastIndicatorsToTypesApi } from "../../services/records.service";
 import { Context } from "../../..";
 import SuccessToast from "../../components/SuccessToast/SuccessToast";
 import ErrorToast from "../../components/ErrorToast/ErrorToast";
 import Spinner from "react-bootstrap/esm/Spinner";
+import { arrayNameIndicators } from "../../utils/infoParameters";
 
 const Indicator = (item, OnChange) => {
     return (
         <Form.Group key={item.indicatorEnum} className="form-hand-input">
-            <Form.Label className="form-hand-input__label">{item.indicatorEnum}:</Form.Label>
+            <Form.Label className="form-hand-input__label">{item.displayValue}:</Form.Label>
             <Form.Control
                 className="form-hand-input__control"
                 type="text"
@@ -24,7 +25,7 @@ const Indicator = (item, OnChange) => {
 }
 
 const InputIndicators = ({show, onHide}) => {
-    const {user} = useContext(Context)
+    const {user, indicators} = useContext(Context)
 
     const [stateForm, setStateForm] = useState(handInput);
 
@@ -49,7 +50,7 @@ const InputIndicators = ({show, onHide}) => {
 
 
     const sendIndicators = () => {
-        const dataSend = stateForm.filter(item => +item.value !== 0).map(item => ({...item, value: +item.value}));
+        const dataSend = stateForm.filter(item => +item.value !== 0).map(item => ({indicatorEnum: item.indicatorEnum, value: +item.value}));
         
         if (dataSend.length === 0) {
             return;
@@ -62,6 +63,9 @@ const InputIndicators = ({show, onHide}) => {
                 setToastMessage("Данные успешно записаны!");
                 setShowSuccessToast(true);
                 setStateForm(stateForm.map(item => ({...item, value: 0})));
+                getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
+                    indicators.setIndicators(currentIndicators)
+                })
             })
             .catch((e)=>{
                 setToastMessage("Произошла ошибка. Повторите позже...");

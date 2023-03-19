@@ -1,5 +1,8 @@
 @import "../..//scss/App.scss";
 
+$breakpoint_tablet: 834px;
+$breakpoint_phone: 430px;
+
 .modal-hand-content{
     --bs-modal-width: 600px !important;
     
@@ -75,5 +78,82 @@
 
     .form-hand-input__control_bad{
         border : 3px solid rgb(255, 114, 114);
+    }
+}
+
+
+@media (max-width: $breakpoint_phone) {
+    .modal-hand-content{
+        .modal-hand-header{
+            padding: 15px;
+        }
+        .modal-hand-header__title{
+            font-size: 20px !important;
+            line-height: 25px;
+            height: fit-content;
+        }
+        .modal-hand-body{
+            padding: 10px;
+        }
+        .modal-hand-body__form{
+            margin-bottom: 20px;
+        }
+        .modal-hand-body__button{
+            font-size: 20px !important;
+            width: 100%;
+        }
+    }
+    .form-hand{
+        width: 95%;
+        .form-hand-input{
+            margin-top: 10px;
+        }
+        .form-hand-input__label{
+            font-size: 20px !important;
+            line-height: 20px;
+            height: 20px;
+        }
+        .form-hand-input__control{
+            height: 25px;
+            font-size: 20px !important;
+            width: 60%;
+        }
+    }
+}
+
+@media (max-width: $breakpoint_tablet) and (min-width: calc($breakpoint_phone + 1px)){
+    .modal-hand-content{
+        .modal-hand-header{
+            padding: 15px;
+        }
+        .modal-hand-header__title{
+            font-size: 27px !important;
+            line-height: 27px;
+            height: 27px;
+        }
+        .modal-hand-body{
+            padding: 30px;
+        }
+        .modal-hand-body__form{
+            margin-bottom: 20px;
+        }
+        .modal-hand-body__button{
+            font-size: 27px !important;
+        }
+    }
+    .form-hand{
+        .form-hand-input{
+            margin-top: 14px;
+        }
+        .form-hand-input__label{
+            font-size: 24px !important;
+            line-height: 24px;
+            height: 24px;
+        }
+        .form-hand-input__control{
+            height: 28px;
+            font-size: 24px !important;
+            width: 60%;
+        }
     }
 }
