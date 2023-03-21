@@ -2,14 +2,6 @@ import axios from "axios";
 import { infoParameters } from "../utils/infoParameters";
 import { $host } from "./index";
 
-//Тестовое получение индикаторов
-export const getRecordByType = async (indicatorType) => {
-  const { data } = await axios.get(
-    `https://jsonplaceholder.typicode.com/posts/${indicatorType}`
-  );
-  return data;
-};
-
 //Получение актуальных параметров пользователя
 export const getUserActualIndicators = async (id) => {
   const { data } = await $host.get(`api/record?userId=${id}`);
@@ -64,7 +56,7 @@ export const getLastIndicatorsToTypesApi = async (userId, indicatorsTypes) => {
     })
   );
   let currentData = [];
-  resultData.map((item) => {
+  resultData.forEach((item) => {
     if (item.data.length !== 0) {
       currentData.push(item.data[item.data.length - 1]);
     }
