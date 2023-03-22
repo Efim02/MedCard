@@ -8,26 +8,31 @@ import { Context } from "..";
 import { fetchOneUserApi } from "./services/users.service";
 import Spinner from "react-bootstrap/esm/Spinner";
 import { observer } from "mobx-react-lite";
-import { getLastIndicatorsToTypesApi } from "./services/records.service";
+import { getLastIndicatorsToTypesApi, getUserActualIndicators } from "./services/records.service";
 import { arrayNameIndicators } from "./utils/infoParameters";
 
 const App = observer(() => {
   const [loading, setLoading] = useState(true);
-  const { user, indicators } = useContext(Context);
+  const { user, indicators, records } = useContext(Context);
 
   useEffect(() => {
     fetchOneUserApi(1)
       .then((data) => {
         user.setUser(data);
       })
-      .then(() => {
+      .then(() => (
         getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
           indicators.setIndicators(currentIndicators)
         })
-      })
+      ))
+      .then(() => (
+        getUserActualIndicators(user.user.id).then((userRecords) => {
+          records.setRecords(userRecords);
+        })
+      ))
       .finally(() => {
         setLoading(false);
-      });
+      })
   }, []);
 
   if (loading) {

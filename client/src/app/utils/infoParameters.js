@@ -156,7 +156,7 @@ export const infoParameters = [
     },
   },
   {
-    name: "АсАТ",
+    name: "ASAT",
     info: {
       fullName: "Аспартатаминотрансфераза (в сыворотке крови)",
       measure: "Ед/л",

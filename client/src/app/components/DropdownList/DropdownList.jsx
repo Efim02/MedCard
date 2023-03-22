@@ -6,7 +6,7 @@ import './DropdownList.scss';
 const DropdownItems = (items) => items.map(
     (item, index) => 
         <Dropdown.Item className='dropdown_item' key={index} value={index}>
-            {item.name}
+            {item}
         </Dropdown.Item>
 )
 
@@ -26,7 +26,7 @@ const DropdownList = (props) => {
         <>
             <Dropdown className='dropdown_list' onSelect={onSelect} >
                 <Dropdown.Toggle className='dropdown_btn' variant='light' disabled={props.disabled}>
-                    <p>{ item ? item.name : `${props.placeholder}`}</p>
+                    <p>{ item ? item : `${props.placeholder}`}</p>
                     <MdOutlineKeyboardArrowDown />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='dropdown_menu' variant='secondary'>
