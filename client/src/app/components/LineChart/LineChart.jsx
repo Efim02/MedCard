@@ -24,28 +24,41 @@ Tooltip,
 Legend
 );
 
+const Content = (data, parameter, options) => {
+    const { name, info } = parameter;
+    
+    return (
+        <>
+            <Stack className='linechart_info' direction='horizontal'>
+                <Stack className='linechart_title'>
+                    <h1>{name}</h1>
+                    <p>{`${info.fullName} (${info.measure})`}</p>
+                </Stack>
+                <Stack className='linechart_norms'>
+                    <p>Норма для женщин: {info.womenNormMin} - {info.womenNormMax}</p>
+                    <p>Норма для мужчин: {info.menNormMin} - {info.menNormMax}</p>
+                </Stack>
+            </Stack>
+            <hr />
+            <Container className='linechart_diagram'>
+                <Line 
+                data={ {...data} }
+                options={ options } />
+            </Container>
+        </>
+    )
+}
+
 const LineChart = (props) => {
     const { data, parameter, options } = props;
-
     return(
         <>
             <Container className='linechart_container'>
-                <Stack className='linechart_info' direction='horizontal'>
-                    <Stack className='linechart_title'>
-                        <h1>{parameter.name}</h1>
-                        <p>{`${parameter.info.fullName} (${parameter.info.measure})`}</p>
-                    </Stack>
-                    <Stack className='linechart_norms'>
-                        <p>Норма для женщин: {parameter.info.womenNorm}</p>
-                        <p>Норма для мужчин: {parameter.info.menNorm}</p>
-                    </Stack>
-                </Stack>
-                <hr />
-                <Container className='linechart_diagram'>
-                    <Line 
-                    data={ {...data} }
-                    options={ options } />
-                </Container>
+                {
+                    (data && parameter) 
+                        ? Content(data, parameter, options)
+                        : <p className="linechart_undefined title">Здесь могла быть ваша диаграмма...</p>
+                }
             </Container>
         </>
     );
