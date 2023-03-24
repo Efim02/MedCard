@@ -30,8 +30,6 @@ export default function HistoryDetail(props) {
     });
   }, []);
 
-  console.log(dataHistory);
-
   return (
     <>
       <Modal
@@ -73,11 +71,13 @@ export default function HistoryDetail(props) {
               <Row>
                 <Col xl={5} xs={12}>
                   {dataHistory.indicators.map((item) => (
-                    <Row key={item.indicatorEnum} className="mb-4">
-                      <Col className="indicators_form-name" xs={2}>
-                        {item.indicatorEnum + ": "}
+                    <Row key={item.indicatorEnum} className="mb-2">
+                      <Col className="indicators_form-name" xs={"auto"}>
+                        {item.indicatorEnum == "GlycatedHemoglobin"
+                          ? "HbA1c:"
+                          : item.indicatorEnum + ": "}
                       </Col>
-                      <Col xs={10}>
+                      <Col>
                         <Form.Control
                           className="input_indicators"
                           key={item.indicatorEnum}
@@ -102,7 +102,10 @@ export default function HistoryDetail(props) {
                           goodParameters.map((item, idx) => {
                             return (
                               <div key={idx} className="badge-success">
-                                {item}
+                                {item == "GlycatedHemoglobin"
+                                  ? "HbA1c"
+                                  : item 
+                                }
                               </div>
                             );
                           })
@@ -122,7 +125,10 @@ export default function HistoryDetail(props) {
                           badParameters.map((item, idx) => {
                             return (
                               <div key={idx} className="badge-danger">
-                                {item}
+                                {item == "GlycatedHemoglobin"
+                                  ? "HbA1c"
+                                  : item 
+                                }
                               </div>
                             );
                           })
