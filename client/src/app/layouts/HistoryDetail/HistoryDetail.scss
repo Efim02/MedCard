@@ -11,8 +11,8 @@
 
 .badge-info{
   padding: 5px 10px;
-  border-radius: 10px;
-  background-color: rgb(237, 255, 72);
+  border-radius: 20px;
+  background-color: rgb(252, 255, 102);
   width: fit-content;
   display: inline;
   margin: 5px;
@@ -21,8 +21,8 @@
 
 .badge-success {
   padding: 5px 10px;
-  border-radius: 10px;
-  background-color: green;
+  border-radius: 20px;
+  background-color: #8BFF90;
   width: fit-content;
   display: inline;
   margin: 5px;
@@ -31,8 +31,8 @@
 
 .badge-danger {
   padding: 5px 10px;
-  border-radius: 10px;
-  background-color: red;
+  border-radius: 20px;
+  background-color: #EA5151;
   width: fit-content;
   display: inline;
   margin: 5px;
@@ -68,6 +68,7 @@
 
   .indicators_form-name {
     font-size: 20px;
+    vertical-align: middle;
   }
 
   .goback_title {
@@ -78,5 +79,10 @@
 @media (max-width: 567px) {
   .goback_title {
     font-size: 16px;
+  }
+
+  .indicators_form-name {
+    font-size: 20px;
+    vertical-align: middle;
   }
 }
