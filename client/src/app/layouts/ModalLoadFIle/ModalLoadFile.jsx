@@ -3,11 +3,12 @@ import { Image, Modal, Spinner } from "react-bootstrap";
 import { Context } from "../../..";
 import ErrorToast from "../../components/ErrorToast/ErrorToast";
 import SuccessToast from "../../components/SuccessToast/SuccessToast";
-import { createRecordByLoadFile } from "../../services/records.service";
+import { createRecordByLoadFile, getLastIndicatorsToTypesApi } from "../../services/records.service";
+import { arrayNameIndicators } from "../../utils/infoParameters";
 import "./ModalLoadFile.scss";
 
 const ModalLoadFile = ({show, onHide}) => {
-    const {user} = useContext(Context)
+    const {user, indicators} = useContext(Context)
     const [loading, setLoading] = useState(false);
     const [drag, setDrag] = useState(false);
 
@@ -15,6 +16,11 @@ const ModalLoadFile = ({show, onHide}) => {
     const [showErrorToast, setShowErrorToast] = useState(false);
 
     const [toastMessage, setToastMessage] = useState("");
+
+    function chooseInFileExplorer() {
+        const fileInput = document.getElementById("fileInput");
+        fileInput.click();
+    }
 
     function dragStartHadler(e) {
         e.preventDefault();
@@ -27,9 +33,9 @@ const ModalLoadFile = ({show, onHide}) => {
         setDrag(false);
     }
 
-    function onDropHandler(e){
+    function onDropHandler(e, isInput){
         e.preventDefault();
-        let file = [...e.dataTransfer.files][0];
+        let file = isInput? e.target.files[0] : [...e.dataTransfer.files][0];
         
         if (!checkIsPdf(file)){
             return;
@@ -45,14 +51,19 @@ const ModalLoadFile = ({show, onHide}) => {
             .then((data) => {
                 setToastMessage('Данные записаны');
                 setShowSuccessToast(true);
+                getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
+                    indicators.setIndicators(currentIndicators)
+                })
             })
             .catch((e) => {
                 setToastMessage("Произошла ошибка. Повторите позже...");
                 setShowErrorToast(true)
             })
+            .finally(() => {
+                setLoading(false);
+                onHide();
+            });
         
-        setLoading(false);
-        onHide();
     }
 
     function checkIsPdf(file){
@@ -94,7 +105,8 @@ const ModalLoadFile = ({show, onHide}) => {
                                 onDragStart={e => dragStartHadler(e)}
                                 onDragLeave={e => dragLeaveHadler(e)}
                                 onDragOver={e => dragStartHadler(e)}
-                                onDrop={e => onDropHandler(e)}
+                                onDrop={e => onDropHandler(e, false)}
+                                onClick={() => chooseInFileExplorer()}
                             >
                                 <Image 
                                     src="assets/load_file.svg"
@@ -111,6 +123,7 @@ const ModalLoadFile = ({show, onHide}) => {
                                 </p>
                             </div>
                             
+                            <input type="file" id="fileInput" style={{display: 'none'}} onChange={e => onDropHandler(e, true)} accept="application/pdf"/>
                         </div>
                     }
                 </Modal.Body>
