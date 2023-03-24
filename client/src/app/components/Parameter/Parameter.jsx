@@ -11,7 +11,7 @@ import { infoParameters } from "../../utils/infoParameters";
 const popover = (props) => (
   <Popover id="popover-basic" className="param_popover">
     <Popover.Header className="param_popover_header">
-      {props.name} -{" "}
+      {props.name == "GlycatedHemoglobin" ? "HbA1c": props.name} -{" "}
       {
         infoParameters[
           infoParameters.findIndex((param) => param.name === props.name)
@@ -66,7 +66,7 @@ export default function Parameter(props) {
               </i>
             </OverlayTrigger>
           </div>
-          <Card.Title className="parameter_card_title">{props.name}</Card.Title>
+          <Card.Title className="parameter_card_title">{props.name == "GlycatedHemoglobin" ? "HbA1c": props.name}</Card.Title>
           <Card.Text className="parameter_card_text">{props.value}</Card.Text>
         </Card.Body>
       </Card>
