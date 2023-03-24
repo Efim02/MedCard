@@ -61,6 +61,21 @@
     border-radius: 10px;
     border: none;
     padding: 12px 12px;
+    vertical-align: middle;
+
+    .a_open_detail, .a_open_delete{
+      height: 100%;
+
+      p{
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .type_col{
+    display: none;
   }
 }
 

@@ -19,6 +19,12 @@
     display: table-cell;
   }
 
+  @media (max-width: 991px) {
+    .type_col{
+      display: none;
+    }
+  }
+
   @media (max-width: 767px) {
     thead th {
       font-size: 12px;
