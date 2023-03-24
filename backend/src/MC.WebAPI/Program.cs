@@ -19,12 +19,18 @@
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddCors(options =>
+            {
+                // TODO: Странно, это не должно было отработать, но отработало.
+                options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:3000"));
+            });
 
             RegisterServices(builder.Services, builder.Environment);
 
             var webApplication = builder.Build();
 
             webApplication.UseRouting();
+            webApplication.UseCors(o => o.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             webApplication.UseEndpoints(endPoints =>
                 endPoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
@@ -37,7 +43,7 @@
                 webApplication.UseSwagger();
                 webApplication.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
             }
-
+            
             webApplication.MapControllers();
             RegisterServiceUtils.MigrateDatabase(webApplication);
 

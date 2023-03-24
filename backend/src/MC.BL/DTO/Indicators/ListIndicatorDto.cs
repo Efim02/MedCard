@@ -1,5 +1,7 @@
 ﻿namespace MC.BL.DTO.Indicators;
 
+using MC.BL.Enums;
+
 /// <summary>
 /// Список индикаторов.
 /// </summary>
@@ -12,6 +14,11 @@ public class ListIndicatorDto
     {
         Indicators = new List<IndicatorDto>();
     }
+
+    /// <summary>
+    /// Способ добавления записи о показателях.
+    /// </summary>
+    public AddingEnum AddingEnum { get; set; }
 
     /// <summary>
     /// Индикаторы.

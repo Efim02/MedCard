@@ -38,7 +38,7 @@ public class RecordController : ControllerBase
     {
         var recordDto = new RecordDto
         {
-            AddingEnum = AddingEnum.Input,
+            AddingEnum = listIndicatorDto.AddingEnum,
             Created = DateTime.UtcNow,
             UserId = userId,
             Indicators = listIndicatorDto.Indicators
@@ -103,36 +103,33 @@ public class RecordController : ControllerBase
     /// <summary>
     /// Загрузить документ с показателями.
     /// </summary>
-    /// <param name="userId"> ИД пользователя. </param>
     /// <param name="bytes"> Байты документа. </param>
     [HttpPost]
     [Route("pdf/data")]
-    public async Task<IActionResult> UploadPdfDocument([FromQuery] long userId, [FromBody] byte[] bytes)
+    public async Task<IActionResult> UploadPdfDocument([FromBody] byte[] bytes)
     {
         await using var memoryStream = new MemoryStream(bytes);
-        return await UploadPdfDocument(userId, memoryStream);
+        return await UploadPdfDocument(memoryStream);
     }
 
     /// <summary>
     /// Загрузить документ с показателями с помощью файла.
     /// </summary>
-    /// <param name="userId"> ИД пользователя. </param>
     /// <param name="formFile"> Файл. </param>
     /// <remarks> Этот запрос использовался для (загрузки файла) тестирования парсинга пдф  из Swagger-а. </remarks>
     [HttpPost]
     [Route("pdf/file")]
-    public async Task<IActionResult> UploadPdfDocument([FromQuery] long userId, [FromForm] IFormFile formFile)
+    public async Task<IActionResult> UploadPdfDocument([FromForm] IFormFile formFile)
     {
         await using var fileStream = formFile.OpenReadStream();
-        return await UploadPdfDocument(userId, fileStream);
+        return await UploadPdfDocument(fileStream);
     }
 
     /// <summary>
     /// Загрузить документ с показателями с помощью файла.
     /// </summary>
-    /// <param name="userId"> ИД пользователя. </param>
     /// <param name="fileStream"> Поток с байтами из файла. </param>
-    private async Task<IActionResult> UploadPdfDocument(long userId, Stream fileStream)
+    private async Task<IActionResult> UploadPdfDocument(Stream fileStream)
     {
         var laboratoryPdfReadingService = new LaboratoryPdfReadingService(fileStream);
         var listIndicatorDto = await Task.Run(laboratoryPdfReadingService.Read);
@@ -141,12 +138,10 @@ public class RecordController : ControllerBase
         {
             AddingEnum = AddingEnum.Parse,
             Created = DateTime.UtcNow,
-            UserId = userId,
             Indicators = listIndicatorDto.Indicators
         };
 
 
-        var recordDtoId = await _recordRepository.Create(recordDto);
-        return Ok(recordDtoId);
+        return Ok(recordDto);
     }
 }
