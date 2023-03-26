@@ -83,6 +83,7 @@ export default function ModalHistory(props) {
                       <tr>
                         <th className="id_col_row">Идентификатор</th>
                         <th>Дата загрузки</th>
+                        <th className="type_col">Тип загрузки</th>
                         <th className="view_col">Просмотр</th>
                         <th className="delete_col">Удаление</th>
                       </tr>
@@ -95,6 +96,7 @@ export default function ModalHistory(props) {
                             date={item.created}
                             idRecord={item.id}
                             reRender={reRender}
+                            type={item.addingEnum}
                             handleSuccessToast={handleShowSuccessToast}
                             handleErrorToast={handleShowErrorToast}
                             toastMessage={setToastMessage}

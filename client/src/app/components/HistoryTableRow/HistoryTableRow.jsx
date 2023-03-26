@@ -26,7 +26,15 @@ export default function HistoryTableRow(props) {
       <tr className="row_table_history">
         <td className="id_col">{props.idRecord}</td>
         <td>{formatDate(props.date)}</td>
-        <td>
+        <td className="type_col">
+          {
+            props.type == "Input" ? 
+              "Ручной"
+            :
+              "Авто"
+          }
+        </td>
+        <td >
           <a
             className="a_open_detail"
             onClick={() => handleOpenDetailHistory()}
