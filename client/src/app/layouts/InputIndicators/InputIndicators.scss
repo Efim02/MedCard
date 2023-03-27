@@ -33,9 +33,13 @@ $breakpoint_phone: 430px;
     .modal-hand-body__form{
         margin-bottom: 50px;
     }
+    .modal-hand-body__buttons{
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+    }
     .modal-hand-body__button{
         border-radius: 5px;
-        background-color: #5FBC47;
         border: none;
         padding: 6px 9px;
         text-align: center;
@@ -44,7 +48,12 @@ $breakpoint_phone: 430px;
         width: 198px;
         font-size: 25px !important;
         line-height: 25px;
-        align-self: end;
+    }
+    .button_send{
+        background-color: #5FBC47;
+    }
+    .button_close{
+        background-color: #fc3838;
     }
 }
 
@@ -98,9 +107,12 @@ $breakpoint_phone: 430px;
         .modal-hand-body__form{
             margin-bottom: 20px;
         }
+        .modal-hand-body__buttons{
+            width: 95%;
+        }
         .modal-hand-body__button{
-            font-size: 20px !important;
-            width: 100%;
+            font-size: 17px !important;
+            width: 40%;
         }
     }
     .form-hand{
@@ -138,7 +150,8 @@ $breakpoint_phone: 430px;
             margin-bottom: 20px;
         }
         .modal-hand-body__button{
-            font-size: 27px !important;
+            font-size: 24px !important;
+            width: 45%;
         }
     }
     .form-hand{
@@ -146,13 +159,13 @@ $breakpoint_phone: 430px;
             margin-top: 14px;
         }
         .form-hand-input__label{
-            font-size: 24px !important;
+            font-size: 22px !important;
             line-height: 24px;
             height: 24px;
         }
         .form-hand-input__control{
             height: 28px;
-            font-size: 24px !important;
+            font-size: 22px !important;
             width: 60%;
         }
     }

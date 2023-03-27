@@ -24,10 +24,15 @@ const Indicator = (item, OnChange) => {
     )
 }
 
-const InputIndicators = ({show, onHide}) => {
+const InputIndicators = ({show, onHide, isParse, indicatorsParse}) => {
     const {user, indicators} = useContext(Context)
 
     const [stateForm, setStateForm] = useState(handInput);
+    if (isParse) {
+        indicatorsParse.forEach((item) => {
+            stateForm.find(i => i.indicatorEnum == item.indicatorEnum).value = item.value;
+        })
+    }
 
     const [showSuccessToast, setShowSuccessToast] = useState(false);
     const [showErrorToast, setShowErrorToast] = useState(false);
@@ -55,10 +60,12 @@ const InputIndicators = ({show, onHide}) => {
         if (dataSend.length === 0) {
             return;
         }
+        
+        const addingEnum = isParse? "Parse": "Input";
 
         setLoading(true)
 
-        createHandRecordApi((user.user.id),dataSend)
+        createHandRecordApi((user.user.id),addingEnum, dataSend)
             .then(() => {
                 setToastMessage("Данные успешно записаны!");
                 setShowSuccessToast(true);
@@ -104,7 +111,10 @@ const InputIndicators = ({show, onHide}) => {
                                     Indicator(item,OnChange)
                                 )}
                             </Form>
-                            <Button className="modal-hand-body__button" onClick={sendIndicators}>Сохранить</Button>
+                            <div className="modal-hand-body__buttons">
+                                <Button className="modal-hand-body__button button_close" onClick={onHide}>Отмена</Button>
+                                <Button className="modal-hand-body__button button_send" onClick={sendIndicators}>Сохранить</Button>
+                            </div>
                         </Modal.Body>
                     </div>
                 }

@@ -21,8 +21,9 @@ export const deleteRecordById = async (id) => {
 };
 
 // Создание записи с помощью ручного ввода
-export const createHandRecordApi = async (userId, dataIndicators) => {
+export const createHandRecordApi = async (userId, addingEnum, dataIndicators) => {
   const { data } = await $host.post(`api/record?userId=${userId}`, {
+    addingEnum: addingEnum,
     indicators: dataIndicators,
   });
   return data;
