@@ -19,7 +19,22 @@ const ModalHistory = React.lazy(() => import("../ModalHistory/ModalHistory"));
 export default function MainNavigation() {
   const [handInputVisible, setHandInputVisible] = useState(false);
   const [loadFileVisible, setLoadFileVisible] = useState(false);
+  
+  const [loadIndicators, setLoadIndicators] = useState([]);
+  const [isIndicatorsParse, setIsIndicatorsParse] = useState(false);
+  
+  const handleShowParseIndicators = (indicators) => {
+    setLoadIndicators(indicators);
+    setIsIndicatorsParse(true);
+    setHandInputVisible(true);
+  }
 
+  const handleCloseModalHandInput = () =>{
+    setHandInputVisible(false); 
+    setIsIndicatorsParse(false); 
+    setLoadIndicators([])
+  }
+ 
   const [showModalChangeDataUser, setShowModalChangeDataUser] = useState(false);
   const handleCloseModalChangeDataUser = () =>
     setShowModalChangeDataUser(false);
@@ -159,8 +174,17 @@ export default function MainNavigation() {
             />
           </Suspense>
         )}
-        <InputIndicators show={handInputVisible} onHide={ () => setHandInputVisible(false) }/>
-        <ModalLoadFile show={loadFileVisible} onHide={ () => setLoadFileVisible(false) }/>
+        <InputIndicators 
+          show= { handInputVisible } 
+          onHide={ handleCloseModalHandInput }
+          isParse = { isIndicatorsParse }
+          indicatorsParse = { loadIndicators }
+        />
+        <ModalLoadFile 
+          show= { loadFileVisible } 
+          onHide= { () => setLoadFileVisible(false) }
+          parseShow = { (inds) => handleShowParseIndicators(inds) }
+        />
       </Container>
     </>
   );
