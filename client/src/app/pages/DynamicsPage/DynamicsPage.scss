@@ -26,9 +26,16 @@
 @media (max-width: 1100px) {
     .dynamics_page {
         height: fit-content;
+        gap: 0px;
     }
 
     .dynamics_diagram {
         min-height: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dynamics_diagram {
+        min-height: 250px;
     }
 }

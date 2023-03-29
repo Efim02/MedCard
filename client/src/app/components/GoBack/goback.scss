@@ -32,3 +32,13 @@ svg {
         width: 170px;
     }
 }
+
+@media (max-width: 576px) {
+    .goback_container * {
+        font-size: 14px;
+    }
+
+    .goback_title {
+        width: 100px;
+    }
+}
