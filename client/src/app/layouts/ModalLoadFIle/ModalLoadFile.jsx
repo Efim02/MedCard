@@ -3,12 +3,11 @@ import { Image, Modal, Spinner } from "react-bootstrap";
 import { Context } from "../../..";
 import ErrorToast from "../../components/ErrorToast/ErrorToast";
 import SuccessToast from "../../components/SuccessToast/SuccessToast";
-import { createRecordByLoadFile, getLastIndicatorsToTypesApi } from "../../services/records.service";
-import { arrayNameIndicators } from "../../utils/infoParameters";
+import { createRecordByLoadFile } from "../../services/records.service";
 import "./ModalLoadFile.scss";
 
-const ModalLoadFile = ({show, onHide}) => {
-    const {user, indicators} = useContext(Context)
+const ModalLoadFile = ({show, onHide, parseShow}) => {
+    const {user} = useContext(Context)
     const [loading, setLoading] = useState(false);
     const [drag, setDrag] = useState(false);
 
@@ -48,20 +47,16 @@ const ModalLoadFile = ({show, onHide}) => {
         setLoading(true);
 
         createRecordByLoadFile(user.user.id, formFile)
-            .then((data) => {
-                setToastMessage('Данные записаны');
-                setShowSuccessToast(true);
-                getLastIndicatorsToTypesApi(user.user.id, arrayNameIndicators).then(currentIndicators => {
-                    indicators.setIndicators(currentIndicators)
-                })
-            })
-            .catch((e) => {
-                setToastMessage("Произошла ошибка. Повторите позже...");
-                setShowErrorToast(true)
-            })
             .finally(() => {
                 setLoading(false);
                 onHide();
+            })
+            .then((data) => {
+                parseShow(data.indicators);
+            })
+            .catch((e) => {
+                setToastMessage("Произошла ошибка. Повторите позже...");
+                setShowErrorToast(true);
             });
         
     }
