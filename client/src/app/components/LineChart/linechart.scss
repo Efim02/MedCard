@@ -75,6 +75,12 @@
         padding: 0 15px;
     }
 
+    .linechart_title {
+        & h1 {
+            font-size: 24px;
+        }
+    }
+
     .linechart_container {
         padding: 20px 20px;
         font-size: 11px;
@@ -83,5 +89,26 @@
     .linechart_norms {
         min-width: 100px;
         word-wrap: break-word;
+    }
+}
+
+@media (max-width: 576px) {
+    .linechart_info {
+        font-size: 10px;
+        padding: 0px 5px;
+    }
+    
+    .linechart_title {
+        & h1 {
+            font-size: 22px;
+        }
+    }
+
+    .linechart_diagram {
+        padding: 0px;
+    }
+
+    .linechart_container {
+        padding: 15px;
     }
 }

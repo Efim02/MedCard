@@ -24,6 +24,9 @@ Tooltip,
 Legend
 );
 
+
+
+
 const Content = (data, parameter, options) => {
     const { name, info } = parameter;
     
@@ -42,8 +45,8 @@ const Content = (data, parameter, options) => {
             <hr />
             <Container className='linechart_diagram'>
                 <Line 
-                data={ {...data} }
-                options={ options } />
+                    data={ {...data} }
+                    options={ options } />
             </Container>
         </>
     )
