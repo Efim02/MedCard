@@ -1,5 +1,5 @@
 import { Modal, Form, Button } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./InputIndicators.scss";
 import { handInput } from "../../utils/constants";
 import { createHandRecordApi, getLastIndicatorsToTypesApi } from "../../services/records.service";
@@ -24,15 +24,18 @@ const Indicator = (item, OnChange) => {
     )
 }
 
-const InputIndicators = ({show, onHide, isParse, indicatorsParse}) => {
+const InputIndicators = ({show, onHide, isParse, indicatorsParse, cleanParse}) => {
     const {user, indicators} = useContext(Context)
 
     const [stateForm, setStateForm] = useState(handInput);
-    if (isParse) {
-        indicatorsParse.forEach((item) => {
-            stateForm.find(i => i.indicatorEnum == item.indicatorEnum).value = item.value;
-        })
-    }
+    useEffect(() => {
+        if (isParse && indicatorsParse.length !== 0) {
+            indicatorsParse.forEach((item) => {
+                setStateForm(stateForm.map(i => i.indicatorEnum == item.indicatorEnum? {...i,value : item.value}: i));
+            })
+            cleanParse([]);
+        }
+    }, [isParse, indicatorsParse, cleanParse, stateForm]);
 
     const [showSuccessToast, setShowSuccessToast] = useState(false);
     const [showErrorToast, setShowErrorToast] = useState(false);
@@ -41,6 +44,10 @@ const InputIndicators = ({show, onHide, isParse, indicatorsParse}) => {
 
     const [loading, setLoading] = useState(false);
 
+    const closeModal = () => {
+        setStateForm(handInput);
+        onHide();
+    }
 
     const OnChange = (event) => {
         if (!isFinite(+event.target.value)){
@@ -80,14 +87,14 @@ const InputIndicators = ({show, onHide, isParse, indicatorsParse}) => {
                 console.log(e.response.data.message)
             });
         setLoading(false);
-        onHide();
+        closeModal();
     };
 
     return (
         <div>
             <Modal
                 show={show}
-                onHide={onHide}
+                onHide={closeModal}
                 animation={true}
                 dialogClassName="modal-hand-content"
             >
@@ -112,7 +119,7 @@ const InputIndicators = ({show, onHide, isParse, indicatorsParse}) => {
                                 )}
                             </Form>
                             <div className="modal-hand-body__buttons">
-                                <Button className="modal-hand-body__button button_close" onClick={onHide}>Отмена</Button>
+                                <Button className="modal-hand-body__button button_close" onClick={closeModal}>Отмена</Button>
                                 <Button className="modal-hand-body__button button_send" onClick={sendIndicators}>Сохранить</Button>
                             </div>
                         </Modal.Body>

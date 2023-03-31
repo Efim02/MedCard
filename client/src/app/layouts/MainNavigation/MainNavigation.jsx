@@ -32,7 +32,10 @@ export default function MainNavigation() {
   const handleCloseModalHandInput = () =>{
     setHandInputVisible(false); 
     setIsIndicatorsParse(false); 
-    setLoadIndicators([])
+  }
+  
+  const handleCleanIndicatorsParse = (arr) => {
+    setLoadIndicators(arr)
   }
  
   const [showModalChangeDataUser, setShowModalChangeDataUser] = useState(false);
@@ -179,6 +182,7 @@ export default function MainNavigation() {
           onHide={ handleCloseModalHandInput }
           isParse = { isIndicatorsParse }
           indicatorsParse = { loadIndicators }
+          cleanParse = { handleCleanIndicatorsParse }
         />
         <ModalLoadFile 
           show= { loadFileVisible } 
