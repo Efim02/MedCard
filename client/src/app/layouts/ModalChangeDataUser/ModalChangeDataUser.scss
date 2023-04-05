@@ -1,0 +1,14 @@
+@import "../../index.scss";
+
+.modal_change_data {
+  color: $purple;
+
+  .btn-close {
+    fill: $purple !important;
+  }
+
+  label{
+    padding: 0 !important;
+    margin: 15px 20px !important;
+  }
+}

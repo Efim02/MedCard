@@ -1,0 +1,42 @@
+// ----------- Fonts -----------
+// Montserrat
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// Roboto
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+// ----------- Colors -----------
+$turquoise: #38b2ac;
+$red-header: #e92347;
+$purple: #667eea;
+$turquoise-opacity: rgba(56, 178, 172, 0.9);
+
+$blue_link: #0060F0;
+$red_link: #FA0000;
+
+$blue_link_hover: #002c6e;
+$red_link_hover: #690000;
+
+$table_element: #DEEFFF;
+
+// ----------- Scrollbar -----------
+body *::-webkit-scrollbar {
+  width: 12px;
+}
+body *::-webkit-scrollbar-track {
+  background: white;
+}
+body *::-webkit-scrollbar-thumb {
+  background-color: $purple;
+  border-radius: 20px;
+  border: 3px solid white;
+}
+
+a {
+  text-decoration: none;
+}
+.main_spinner {
+  width: 10rem;
+  height: 10rem;
+  color: $turquoise_opacity;
+}

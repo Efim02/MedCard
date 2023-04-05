@@ -1,0 +1,114 @@
+@import '../../scss/App.scss';
+
+.linechart_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 3px 4px 4px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    height: 100%;
+    padding: 20px 50px 30px;
+    margin: 20px;
+
+    & hr {
+        width: 100%;
+        border: 1px solid gray;
+        margin: 10px;
+    }
+}
+
+.linechart_undefined {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 45px;
+    color: lightgray;
+    text-align: center;
+}
+
+.linechart_info {
+    gap: 10px;
+    height: fit-content;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: $turquoise;
+    padding: 0 20px;
+    width: 100%;
+
+    & .vstack {
+        gap: 10px;
+    }
+
+    & h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        color: #000000;
+    }
+
+    & * {
+        margin: 0;
+    }
+}
+
+.linechart_norms {
+    align-items: end;
+    justify-content: end;
+}
+
+.linechart_diagram {
+    height: 100%;
+}
+
+@media (max-width: 1100px) {
+    .linechart_container {
+        padding: 20px 20px;
+        font-size: 13px;
+    }
+
+    .linechart_undefined {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .linechart_info {
+        padding: 0 15px;
+    }
+
+    .linechart_title {
+        & h1 {
+            font-size: 24px;
+        }
+    }
+
+    .linechart_container {
+        padding: 20px 20px;
+        font-size: 11px;
+    }
+
+    .linechart_norms {
+        min-width: 100px;
+        word-wrap: break-word;
+    }
+}
+
+@media (max-width: 576px) {
+    .linechart_info {
+        font-size: 10px;
+        padding: 0px 5px;
+    }
+    
+    .linechart_title {
+        & h1 {
+            font-size: 22px;
+        }
+    }
+
+    .linechart_diagram {
+        padding: 0px;
+    }
+
+    .linechart_container {
+        padding: 15px;
+    }
+}

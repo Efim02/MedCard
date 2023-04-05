@@ -1,0 +1,80 @@
+@import "../../index.scss";
+
+.parameter_card {
+  background: $turquoise !important;
+  box-shadow: 7px 8px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: none;
+  margin: 10px 0px;
+  position: relative;
+  transition: 0.5s ease all;
+  border: 1px solid $turquoise;
+
+  &:hover {
+    background-color: white !important;
+    border: 1px solid $turquoise;
+
+    .parameter_card_title {
+      color: $turquoise !important;
+    }
+
+    .parameter_card_text {
+      color: $turquoise !important;
+    }
+
+    .icon_question {
+      color: $turquoise !important;
+    }
+  }
+}
+
+.popover_card {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.icon_question {
+  color: white !important;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.parameter_card_title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  color: #ffffff;
+  transition: 0.5s ease all;
+}
+
+.param_popover {
+  border: 1px solid $turquoise;
+}
+
+.param_popover_header {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: $turquoise !important;
+}
+
+.param_popover_body {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: $turquoise !important;
+}
+
+.parameter_card_text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  transition: 0.5s ease all;
+  color: #ffffff;
+  line-height: 50px;
+}

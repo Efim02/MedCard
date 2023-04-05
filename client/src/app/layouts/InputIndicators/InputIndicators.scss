@@ -1,0 +1,174 @@
+@import "../..//scss/App.scss";
+
+$breakpoint_tablet: 834px;
+$breakpoint_phone: 430px;
+
+.modal-hand-content{
+    --bs-modal-width: 600px !important;
+    
+    .modal-hand-header{
+        padding: 23px 26px 7px 26px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .modal-hand-header__title{
+        font-family: 'Roboto', sans-serif;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 35px !important;
+        color: $purple;
+        height: 50px;
+        line-height: 41px;
+    }
+    .btn-close{
+        color: $purple;
+    }
+    .modal-hand-body{
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal-hand-body__form{
+        margin-bottom: 50px;
+    }
+    .modal-hand-body__buttons{
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+    }
+    .modal-hand-body__button{
+        border-radius: 5px;
+        border: none;
+        padding: 6px 9px;
+        text-align: center;
+        color: #fff;
+        height: 41px;
+        width: 198px;
+        font-size: 25px !important;
+        line-height: 25px;
+    }
+    .button_send{
+        background-color: #5FBC47;
+    }
+    .button_close{
+        background-color: #fc3838;
+    }
+}
+
+.form-hand{
+    width: 80%;
+    font-weight: 300 !important;
+
+    .form-hand-input{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 24px;
+        align-items: center;
+    }
+    .form-hand-input__label{
+        line-height: 40px;
+        height: 40px;
+        font-size: 30px !important;
+        margin-bottom: 0;
+    }
+    .form-hand-input__control{
+        background-color: #DEEFFF;
+        width: 300px;
+        height: 40px;
+        outline: none;
+        border: none;
+        font-size: 20px !important;
+        &:focus{
+            outline: $purple;
+        }
+    }
+
+    .form-hand-input__control_bad{
+        border : 3px solid rgb(255, 114, 114);
+    }
+}
+
+
+@media (max-width: $breakpoint_phone) {
+    .modal-hand-content{
+        .modal-hand-header{
+            padding: 15px;
+        }
+        .modal-hand-header__title{
+            font-size: 20px !important;
+            line-height: 25px;
+            height: fit-content;
+        }
+        .modal-hand-body{
+            padding: 10px;
+        }
+        .modal-hand-body__form{
+            margin-bottom: 20px;
+        }
+        .modal-hand-body__buttons{
+            width: 95%;
+        }
+        .modal-hand-body__button{
+            font-size: 15px !important;
+            width: 45%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    .form-hand{
+        width: 95%;
+        .form-hand-input{
+            margin-top: 10px;
+        }
+        .form-hand-input__label{
+            font-size: 20px !important;
+            line-height: 20px;
+            height: 20px;
+        }
+        .form-hand-input__control{
+            height: 25px;
+            font-size: 20px !important;
+            width: 60%;
+        }
+    }
+}
+
+@media (max-width: $breakpoint_tablet) and (min-width: calc($breakpoint_phone + 1px)){
+    .modal-hand-content{
+        .modal-hand-header{
+            padding: 15px;
+        }
+        .modal-hand-header__title{
+            font-size: 27px !important;
+            line-height: 27px;
+            height: 27px;
+        }
+        .modal-hand-body{
+            padding: 30px;
+        }
+        .modal-hand-body__form{
+            margin-bottom: 20px;
+        }
+        .modal-hand-body__button{
+            font-size: 24px !important;
+            width: 45%;
+        }
+    }
+    .form-hand{
+        .form-hand-input{
+            margin-top: 14px;
+        }
+        .form-hand-input__label{
+            font-size: 22px !important;
+            line-height: 24px;
+            height: 24px;
+        }
+        .form-hand-input__control{
+            height: 28px;
+            font-size: 22px !important;
+            width: 60%;
+        }
+    }
+}
