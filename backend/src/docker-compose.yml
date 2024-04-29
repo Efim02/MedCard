@@ -27,7 +27,7 @@ services:
         condition: service_started
     ports:
     - 53125:80
-  front:
+  med-card-webapp:
     container_name: medcard-front
     image: chillingspree/medcard-nst:front
     ports:

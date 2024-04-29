@@ -1,0 +1,74 @@
+@import '../../scss/App.scss';
+
+.linechart_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 4px 4px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    height: 100%;
+    padding: 20px 50px 30px;
+    margin: 20px;
+
+    & hr {
+        width: 100%;
+        border: 1px solid gray;
+        margin: 10px;
+    }
+}
+
+.linechart_info {
+    gap: 10px;
+    height: fit-content;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: $turquoise;
+    padding: 0 20px;
+    width: 100%;
+
+    & .vstack {
+        gap: 10px;
+    }
+
+    & h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        color: #000000;
+    }
+
+    & * {
+        margin: 0;
+    }
+}
+
+.linechart_norms {
+    align-items: end;
+    justify-content: end;
+}
+
+.linechart_diagram {
+    height: 100%;
+}
+
+@media (max-width: 1100px) {
+    .linechart_container {
+        padding: 20px 20px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .linechart_info {
+        padding: 0 15px;
+    }
+
+    .linechart_container {
+        padding: 20px 20px;
+        font-size: 11px;
+    }
+
+    .linechart_norms {
+        width: 110px;
+    }
+}
