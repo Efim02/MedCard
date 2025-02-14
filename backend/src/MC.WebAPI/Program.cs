@@ -2,9 +2,10 @@
 {
     using System.Text.Json.Serialization;
 
+    using Helpful.Api.Parameters;
+    using Helpful.Api.Swagger;
+
     using MC.BL.Enums;
-    using MC.WebAPI.Extensions;
-    using MC.WebAPI.Helpers;
     using MC.WebAPI.Utils;
 
     /// <summary>
@@ -37,13 +38,8 @@
             // TODO: Для использования Https необходимо в Docker-е его настроить.
             //webApplication.UseHttpsRedirection();
 
-            // Configure the HTTP request pipeline.
-            if (webApplication.Environment.IsDevelopment())
-            {
-                webApplication.UseSwagger();
-                webApplication.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
-            }
-            
+            webApplication.ParametrizeSwagger();
+
             webApplication.MapControllers();
             RegisterServiceUtils.MigrateDatabase(webApplication);
 
@@ -60,14 +56,8 @@
         {
             // Add services to the container.
             serviceCollection.AddControllers();
-            serviceCollection.AddControllersWithViews().AddJsonOptions(options =>
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            serviceCollection.AddEndpointsApiExplorer();
-            serviceCollection.AddSwaggerGen();
-
-            serviceCollection.ParametrizeSwagger(webHostEnvironment);
+            
+            serviceCollection.ParametrizeSwagger();
             serviceCollection.AddAutoMapper(typeof(Program));
 
             RegisterServiceUtils.RegisterDatabase(serviceCollection);
@@ -78,6 +68,8 @@
                 options.ConstraintMap.Add(nameof(AddingEnum), typeof(CustomRouteConstraint<AddingEnum>));
                 options.ConstraintMap.Add(nameof(IndicatorEnum), typeof(CustomRouteConstraint<IndicatorEnum>));
             });
+            
+            serviceCollection.RegisterEnumString<AddingEnum>();
         }
     }
 }

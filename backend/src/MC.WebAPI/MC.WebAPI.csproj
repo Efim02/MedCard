@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>c3d4bbe0-9a47-4940-a510-7d30ca9fb8a9</UserSecretsId>
@@ -49,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\libs\asp-net-templates\src\Helpful.Api\Helpful.Api.csproj" />
     <ProjectReference Include="..\MC.BL\MC.BL.csproj" />
     <ProjectReference Include="..\MC.DB\MC.DB.csproj" />
     <ProjectReference Include="..\MC.Report\MC.Report.csproj" />

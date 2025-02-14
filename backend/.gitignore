@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Exlude xml files with descriptions for swagger.
 *SK.Web.xml
+*idea
